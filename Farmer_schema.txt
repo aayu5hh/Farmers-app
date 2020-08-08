@@ -1,0 +1,40 @@
+User
+{
+	_id: String,
+	first_name: String,
+	last_name: String,
+	email: String,
+	password: String, 
+	Role: String
+}
+
+Farmer
+{
+	_id: ObjectId(),
+	first_name: String,
+	last_name: String,
+	email: String,
+	password: String, 
+	address: {state: String, city: String, street: String, zip: number},
+	products: [
+		{_id: ObjectId(), name: String, description: String, quantity: number, price: number, picture: String}
+	]
+
+	customers: [
+		{
+			_id: String,
+			first_name: String,
+			last_name: String,
+			email: String,
+			password: String,
+			orders: [
+				{_id: ObjectId()
+				 order_items: [{prod_name: String, qty: number, item_total: number}, {....}],
+				 total_price: number,
+				 status: ready,
+				 pickup_date: Date
+				}
+			]
+		}
+	]
+}
