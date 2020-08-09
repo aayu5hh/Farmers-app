@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule, 
     RouterModule.forChild([
+      {path: '', redirectTo: 'login', pathMatch: 'Full'},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent}
     ])

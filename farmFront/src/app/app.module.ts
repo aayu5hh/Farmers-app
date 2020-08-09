@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-// import { UsersModule } from './users/users.module';
 import { HomeComponent } from './home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,6 +12,7 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
       // { path: "", redirectTo: "login", pathMatch: "full" }

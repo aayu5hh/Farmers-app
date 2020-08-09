@@ -1,4 +1,4 @@
-<form [formGroup]="signupForm">
+<form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
     <p><label>first name: </label>  <input type="text" formControlName="firstName"></p>
     
     <p><label>last name: </label>  <input type="text" formControlName="lastName"></p>
@@ -6,6 +6,12 @@
     <p><label>email: </label>  <input type="text" formControlName="email"></p>
 
     <p><label>password: </label>  <input type="password" formControlName="password"></p>
+
+    <div *ngFor="let r of roles">
+        <label>
+          <input type="radio" formControlName="role" [value]="r"> {{r}}
+        </label>
+      </div>
     
     <button type="submit">Submit</button>
 </form>
