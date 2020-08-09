@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "farmFront"
+    }
+  },
+  "defaultProject": "farmFront",
+  "cli": {
+    "analytics": false
+  }
 }
