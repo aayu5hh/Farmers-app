@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import{ RequestInterceptor } from'./request.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
       // { path: "", component: HomeComponent}
     ])
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

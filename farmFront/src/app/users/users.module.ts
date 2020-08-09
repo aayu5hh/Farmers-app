@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import{RequestInterceptor} from'../request.interceptor';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [SignupComponent, LoginComponent],
@@ -18,6 +16,6 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
       {path: 'signup', component: SignupComponent}
     ])
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }]
+  providers: []
 })
 export class UsersModule { }
