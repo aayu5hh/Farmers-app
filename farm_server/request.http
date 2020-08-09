@@ -9,3 +9,11 @@ POST http://localhost:3000/login/ HTTP/1.1
 Content-Type: application/json
 
 {"email":"ayush@gmail.com", "password":"abc123"}
+
+####
+
+Post http://localhost:3000/farmers/ HTTP/1.1
+Content-Type: application/json
+
+{"name":"Apple", "description":"Apple is from Humla. Its tasty and red apple", "price":"$1.5",
+        "quantity":1.5, "image":"https://picsum.photos/200/300"}
