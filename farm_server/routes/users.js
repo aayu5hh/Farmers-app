@@ -50,7 +50,7 @@ router.post('/login', async(req, res) => {
           return res.status(401).json({message: "Incorrect Password!"});
       }
 
-      const payload = {id: acct._id, email: acct.email};
+      const payload = {id: acct._id, first_name: acct.first_name, last_name: acct.last_name, email: acct.email, role: acct.role};
       const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "24h"});
       
       res.status(200).json({token: token});

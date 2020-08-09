@@ -1,10 +1,8 @@
-<h2> Login page! </h2>
-
-<!-- <form [formGroup]="loginForm">
+<form [formGroup]="loginForm" (ngSubmit)='onSubmit()'>
 
     <p><label>email: </label>  <input type="text" formControlName="email"></p>
 
     <p><label>password: </label>  <input type="password" formControlName="password"></p>
-    
+
     <button type="submit">Submit</button>
-</form> -->
+</form>

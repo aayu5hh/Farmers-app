@@ -13,4 +13,8 @@ export class UserService {
   signUp(account) {
     return this.http.post(this.baseUrl + 'signup', account);
   }
+
+  login(account) {
+    return this.http.post(this.baseUrl + 'login', account);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit{
 
   roles = ['Customer', 'Farmer'];
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private r: Router, private formBuilder: FormBuilder, private userService: UserService) {
 
     this.signupForm = formBuilder.group({
       'first_name': ["", [Validators.required]],
@@ -39,6 +40,10 @@ export class SignupComponent implements OnInit{
     this.userService.signUp(this.signupForm.value).subscribe(resp => {
       console.log(resp);
     })
+  }
+
+  goToLogin() {
+    this.r.navigate(['login']);
   }
 
 }
