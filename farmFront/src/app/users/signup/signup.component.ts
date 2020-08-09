@@ -13,7 +13,7 @@ import {
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent{
+export class SignupComponent implements OnInit{
 
   signupForm: FormGroup;
 
@@ -22,8 +22,8 @@ export class SignupComponent{
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
 
     this.signupForm = formBuilder.group({
-      'firstName': ["", [Validators.required]],
-      'lastName': [""],
+      'first_name': ["", [Validators.required]],
+      'last_name': [""],
       'email': ["", [Validators.required, Validators.email]],
       'password': ["", [Validators.required]],
       'role': ['Customer']
@@ -31,6 +31,9 @@ export class SignupComponent{
     });
    }
 
+  ngOnInit(){
+    console.log('inside signup Component');
+  }
   onSubmit() {
     console.log(this.signupForm.value);
     this.userService.signUp(this.signupForm.value).subscribe(resp => {

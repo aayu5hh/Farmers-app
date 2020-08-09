@@ -5,6 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+const cors = require('cors');
 
 var usersRouter = require('./routes/users');
 
@@ -16,6 +17,7 @@ app.set('view engine', 'jade');
 
 mongoose.connect(process.env.MONGO_URL);
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
