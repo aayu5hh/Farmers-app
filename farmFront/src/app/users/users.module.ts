@@ -9,7 +9,10 @@ import { LoginComponent } from './login/login.component';
   declarations: [SignupComponent, LoginComponent],
   imports: [
     CommonModule, 
-    // RouterModule.forChild()
+    RouterModule.forChild([
+      {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent}
+    ])
   ]
 })
 export class UsersModule { }

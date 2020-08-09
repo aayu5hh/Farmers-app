@@ -4,16 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 // import { UsersModule } from './users/users.module';
+import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, HomeComponent
   ],
   imports: [
-    ,
+    BrowserModule,
     RouterModule.forRoot([
-      { path: "login", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
-      { path: "", redirectTo: "login", pathMatch: "full" }
+      { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
+      // { path: "", redirectTo: "login", pathMatch: "full" }
+      // { path: "", component: HomeComponent}
     ])
   ],
   providers: [],

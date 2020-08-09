@@ -1,1 +1,46 @@
-<p>signup works!</p>
+<form [formGroup]="signupForm">
+    <p><label>first name: </label>  <input type="text" formControlName="firstName"></p>
+    
+    <p><label>last name: </label>  <input type="text" formControlName="lastName"></p>
+    
+    <p><label>email: </label>  <input type="text" formControlName="email"></p>
+
+    <p><label>password: </label>  <input type="password" formControlName="password"></p>
+    
+    <button type="submit">Submit</button>
+</form>
+
+
+
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username">
+      
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="text" class="form-control" id="email" formControlName="email">
+        <div *ngIf="!myForm.get('userData').get('email').valid">
+          Invalid Email
+        </div>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="radio" *ngFor="let g of genders">
+      <label>
+        <input type="radio" formControlName="gender" [value]="g"> {{g}}
+      </label>
+    </div>
+    <div formArrayName="hobbies">
+      <h3>Hobbies</h3>
+      <div class="form-group" *ngFor="let hobby of myForm.get('hobbies')['controls']; let i = index">
+        <input type="text" class="form-control" formControlName="{{i}}">
+      </div>
+    </div>
+    <button type="button" class="btn btn-default" (click)="onAddHobby()">Add Hobby</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+  </form> -->
+  
