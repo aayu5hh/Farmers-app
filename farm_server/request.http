@@ -18,8 +18,8 @@ Content-Type: application/json
 POST http://localhost:3000/login/ HTTP/1.1
 Content-Type: application/json
 
-<<<<<<< HEAD
-{"email":"ayush@gmail.com", "password":"abc123"}
+{"email":"ayush@gmail.com", "password":"abc13"}
+
 
 ####
 //add farmer products
@@ -54,6 +54,6 @@ Content-Type: application/json
 //delete farmer product by id
 DELETE http://localhost:3000/farmer/5f30697f0315759d9cb82520 HTTP/1.1
 Content-Type: application/json
-=======
 {"email":"ayush@gmail.com", "password":"abc13"}
->>>>>>> 004505b8bbc225122998fa588c12ab04126b2cfd
+
+
