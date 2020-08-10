@@ -5,39 +5,57 @@ User
 	last_name: String,
 	email: String,
 	password: String, 
-	Role: String
-}
-
-Farmer
-{
-	_id: ObjectId(),
-	first_name: String,
-	last_name: String,
-	email: String,
-	password: String, 
+	Role: String,
 	address: {state: String, city: String, street: String, zip: number},
-	products: [
-		{_id: ObjectId(), name: String, description: String, quantity: number, price: number, picture: String}
-	]
-
-	customers: [
-		{
-			_id: String,
-			first_name: String,
-			last_name: String,
-			email: String,
-			password: String,
-			orders: [
-				{_id: ObjectId()
-				 order_items: [{prod_name: String, qty: number, item_total: number}, {....}],
-				 total_price: number,
-				 status: ready,
-				 pickup_date: Date
-				}
-			]
-		}
-	]
+	products: [{_id: ObjectId(), name: String, description: String, quantity: number, price: number, picture: String}]
+	reputation: number
 }
 
+Orders
+{
 
+_id: ObjectId()
+ order_items: [{prod_name: String, qty: number, item_total: number}, {....}],
+ total_price: number,
+ status: ready,
+ pickup_date: Date,
+ farmer: {id: Objectid(), first_name, last_name, email, address},
+ customer: {id, first_name, last_name, email}
+
+}
+
+/login ->
+/signup -> 
+
+
+/farmer/add POST
+{farmer_id: String, name: String, description: String, quantity: number, price: number, picture: String}
+
+/farmer GET
+Get products by farmer_id
+
+/farmer/:product_id DELETE
+Delete product by product_id
+
+/farmer/:product_id UPDATE
+Update product by product_id
+
+/farmer/orders GET
+get orders by farmer_id
+
+/farmer/orders/:status GET
+update order status
+
+
+/customer GET
+Fetch all docs whose role is farmer
+
+/customer/farmer_id GET
+get all products by farmer_id
+
+/customer/orders POST
+add to orders collection the request body
+
+/customer/orders GET
+get orders by customer id
 

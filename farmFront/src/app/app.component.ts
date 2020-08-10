@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template:`   <router-outlet></router-outlet>`,
-  styleUrls: ['./app.component.css']
+  template: `
+    <router-outlet></router-outlet>
+  `,
+  styles: ['']
 })
 export class AppComponent {
   title = 'farmFront';

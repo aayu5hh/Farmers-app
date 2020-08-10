@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../model/account');
+const verifyToken = require('../middlewares/verifyToken');
 
 const saltRounds = 10;
 
@@ -50,7 +51,7 @@ router.post('/login', async(req, res) => {
           return res.status(401).json({message: "Incorrect Password!"});
       }
 
-      const payload = {id: acct._id, email: acct.email};
+      const payload = {id: acct._id, first_name: acct.first_name, last_name: acct.last_name, email: acct.email, role: acct.role};
       const token = jwt.sign(payload, process.env.SECRET_KEY, {expiresIn: "24h"});
       
       res.status(200).json({token: token});
@@ -59,6 +60,12 @@ router.post('/login', async(req, res) => {
 
       res.json({message: err});
   }
+});
+
+router.get('/userdata', verifyToken, async (req, res) => {
+
+    console.log(req.body.tokenData);
+    return res.status(200).json(req.body.tokenData);
 })
 
 module.exports = router;
