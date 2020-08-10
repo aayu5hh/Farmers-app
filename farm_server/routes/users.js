@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 
 
 const User = require('../model/user');
-
-const User = require('../model/account');
 const verifyToken = require('../middlewares/verifyToken');
 
 
@@ -28,7 +26,8 @@ router.post('/signup', async (req, res)=> {
     try{
         const hashedPw = await bcrypt.hash(password, saltRounds);
     
-        const newAccount = {first_name: f_name, last_name: l_name, email: email, password: hashedPw, role: role, address:address};
+        const newAccount = {first_name: f_name, last_name: l_name, email: email, 
+                            password: hashedPw, role: role, address:address, reputation:reputation, product:product};
         const account = new User(newAccount);
 
         await account.save();
