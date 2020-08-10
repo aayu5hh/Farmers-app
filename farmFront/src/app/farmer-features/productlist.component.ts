@@ -34,7 +34,7 @@ import { Router} from '@angular/router';
 export class ProductlistComponent implements OnInit {
 
   public products;
-  public loading: boolean = true;
+  //public loading: boolean = true;
   public obs$;
   public user;
   
@@ -48,7 +48,7 @@ deleteProduct(farmer_id,product_id){
 
   ngOnInit() {
        //  we will get data from backend throuth services
-       this.loading = false 
+       //this.loading = false 
        // dammy data 
        this.products  = [{ _id: 1001 , name : 'Tomato', price: 20, quantity:200, description : 'This is dammy ', picture :'' }]
   }

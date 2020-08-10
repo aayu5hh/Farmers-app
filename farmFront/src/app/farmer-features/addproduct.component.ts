@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 @Component({
   selector: 'app-addproduct',
   template: `
@@ -97,6 +99,25 @@ export class AddproductComponent implements OnDestroy {
     formData.append('quantity', this.myForm.get('quantity').value);
     formData.append('description', this.myForm.get('description').value);
           // we will post the data to backend 
+          //const user = this.localService.getUser();
+          const helper = new JwtHelperService();
+
+
+          const token = JSON.parse(localStorage.getItem('token'));
+          const user = helper.decodeToken(token);
+          console.log(user);
+          // const expirationDate = helper.getTokenExpirationDate(myRawToken);
+          // const isExpired = helper.isTokenExpired(myRawToken);
+          //decodeToken using angular2-auth and get the entire user json
+
+          this.obs$ = this.http
+            .post(`http://localhost:3000/farmer/product/add`, formData)
+            .subscribe((res) => {
+              console.log(res);
+              alert('Product Uploaded Successfully !!');
+              this.router.navigateByUrl('/farmers/productlist');
+            });
+    
   }
   ngOnDestroy() {
     if (this.obs$) {

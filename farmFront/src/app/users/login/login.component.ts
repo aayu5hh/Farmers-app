@@ -36,8 +36,11 @@ export class LoginComponent implements OnInit {
       (resp) => { 
         console.log(resp);
         localStorage.setItem('token',resp['token']);
-
+        //decodeToken
+        //check the role from the decoded token
+        //if role is customer
         this.r.navigate(['customers']);
+        //if role is farmer, navigate to farmer
       },
       (err) => console.log(err.error) )
   }

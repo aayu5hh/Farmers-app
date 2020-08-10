@@ -33,11 +33,15 @@ import { Router } from '@angular/router';
 })
 export class ListofordersComponent implements OnInit {
 
+  public user;
   public orders;
+  constructor( private router: Router) {}
 
-  constructor( private router: Router ) {}
 
 
+deleteProduct(farmer_id, product_id){
+
+}
 
 
 onOrderReady(id, email):void{
@@ -49,7 +53,9 @@ onOrderCompleted(id){
 }
 
   ngOnInit(): void {
-    // dammy data 
+  
+
+    // // dammy data 
      this.orders  = [{ total_price: 200, pickup_date : '08/12/2020', status: 'Pending', farmer : {_id :10}, customer :{_id : 12}}]
      
   }
