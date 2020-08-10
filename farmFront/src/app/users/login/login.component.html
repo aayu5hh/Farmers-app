@@ -1,71 +1,53 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <title>Login</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
-</head>
-<body>  <!-- SideNav slide-out button -->
- 
-
     <div class="container-fluid" style="margin-top:100px;">
         <div class="row justify-content-md-center">
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="form-container">
-                    <form [formGroup]="loginForm" (ngSubmit)='onSubmit()'>
-                        <div formGroupName="userData">
+
+                    <div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" formControlName="email" aria-describedby="emailHelp"
-                                   placeholder="Enter email">
+                            <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                                aria-describedby="emailHelp" placeholder="Enter email">
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
                             <div *ngIf="!loginForm.get('email').valid">
                                 Invalid Email
-                              </div>
+                            </div>
                         </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" formControlName="password" name="password" placeholder="Password">
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="keepMe" name="keepMe">
-                            <label class="form-check-label pr-5" for="keepMe" style="font-size: 12px">Remember Me?</label>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                            <!-- <button type="button" class="btn btn-warning" Button label="signup" (click)="signup=true;signin=false">Sign-Up</button> -->
-                            <button type="button" class="btn btn-warning" (click) = 'goToSignUp()'>Sign-Up</button>
-                        </div>
-                        <!-- <div class="form-group" *ngIf="loginError">
-                            <p style="font-size: 12px; color: #FF1C19;">Email or Password invalid, please verify</p>
-                        </div> -->
-                        <!-- <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit" Button label="signin" (click)="signup=false;signin=true">Login</button> -->
-                        <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
-                    </form>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            name="password" placeholder="Password">
+                    </div>
+                </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="keepMe" name="keepMe">
+                        <label class="form-check-label pr-5" for="keepMe" style="font-size: 12px">Remember
+                            Me?</label>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                        <!-- <button type="button" class="btn btn-warning" Button label="signup" (click)="signup=true;signin=false">Sign-Up</button> -->
+                        <button type="button" class="btn btn-warning" (click)='goToSignUp()'>Sign-Up</button>
+                    </div>
+                    <!-- <div class="form-group" *ngIf="loginError">
+                        <p style="font-size: 12px; color: #FF1C19;">Email or Password invalid, please verify</p>
+                    </div> -->
+                    <!-- <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit" Button label="signin" (click)="signup=false;signin=true">Login</button> -->
+                    <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
                 </div>
             </div>
         </div>
     </div>
-
- 
-
+</form>
 
 
 
 
 
-    <!-- <p><label>email: </label>  <input type="text" formControlName="email"></p>
 
-    <p><label>password: </label>  <input type="password" formControlName="password"></p>
 
-    <button type="submit">Submit</button>
-    <a [routerLink]="['customers']">Dashboard</a> -->
-    
+<!-- <p><label>email: </label>  <input type="text" formControlName="email"></p>
 
-</body>
-</html>
+<p><label>password: </label>  <input type="password" formControlName="password"></p>
+
+<button type="submit">Submit</button>
+<a [routerLink]="['customers']">Dashboard</a> -->
