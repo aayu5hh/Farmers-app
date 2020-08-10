@@ -5,8 +5,10 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+
 const User = require('../model/user');
 const verifyToken = require('../middlewares/verifyToken');
+
 
 const saltRounds = 10;
 

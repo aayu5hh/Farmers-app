@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let item for items">
           <th scope="row">1</th>
           <td>Image</td>
           <td>Potato</td>
@@ -24,30 +24,9 @@
             <button type="button" class="btn btn-danger">Delete</button></td>
   
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Image</td>
-          <td>Potato</td>
-          <td>large Potato</td>
-          <td>1$</td>
-          <td>15</td>
-          <td>
-          
-            <button type="button" class="btn btn-danger">Delete</button></td>
-  
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Image</td>
-          <td>Potato</td>
-          <td>large Potato</td>
-          <td>1$</td>
-          <td>15</td>
-          <td>
-          
-            <button type="button" class="btn btn-danger">Delete</button></td>
-  
-        </tr>
+        <p>Total Price:200$</p>
+        <button type="button" class="btn btn-success">Checkout</button>
+      
       </tbody>
     </table>
     </div>
