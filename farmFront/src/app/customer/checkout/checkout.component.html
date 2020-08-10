@@ -1,0 +1,33 @@
+<div style="margin: 200px;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item for items">
+          <th scope="row">1</th>
+          <td>Image</td>
+          <td>Potato</td>
+          <td>large Potato</td>
+          <td>1$</td>
+          <td>15</td>
+          <td>
+            
+            <button type="button" class="btn btn-danger">Delete</button></td>
+  
+        </tr>
+        <p>Total Price:200$</p>
+        <button type="button" class="btn btn-success">Checkout</button>
+      
+      </tbody>
+    </table>
+    </div>
+    

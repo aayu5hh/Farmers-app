@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Login</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"  href="/login.css"/>
+    <link rel='stylesheet' type='text/css' media='screen' href="/core.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <!-- ======================================================================================== -->
+
+    <!-- SideNav slide-out button -->
+<a (click)="sidenav.toggle()" mdbBtn color="primary" class="p-3 button-collapse"><mdb-icon fas icon="bars"></mdb-icon></a>
+<!--/. SideNav slide-out button -->
+
+<!-- Sidebar navigation -->
+<mdb-side-nav #sidenav class="fixed" [fixed]="true">
+  <!-- Logo -->
+  <li>
+    <div class="logo-wrapper waves-light">
+      <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center"></a>
+    </div>
+  </li>
+  <!--/. Logo -->
+  <!--Social-->
+  <li>
+    <ul class="social">
+      <li><a class="icons-sm fb-ic"><mdb-icon fab icon="facebook-f"> </mdb-icon></a></li>
+      <li><a class="icons-sm pin-ic"><mdb-icon fab icon="pinterest"> </mdb-icon></a></li>
+      <li><a class="icons-sm gplus-ic"><mdb-icon fab icon="google-plus"> </mdb-icon></a></li>
+      <li><a class="icons-sm tw-ic"><mdb-icon fab icon="twitter"> </mdb-icon></a></li>
+    </ul>
+  </li>
+  <!--/Social-->
+  <!--Search Form-->
+  <li>
+    <form class="search-form" role="search">
+      <div class="form-group md-form waves-light" mdbWavesEffect>
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+    </form>
+  </li>
+  <!--/.Search Form-->
+  <!-- Side navigation links -->
+  <li>
+    <ul class="collapsible collapsible-accordion">
+      <mdb-accordion [multiple]="false" aria-multiselectable="false">
+
+        <!-- Collapsible link -->
+        <mdb-accordion-item>
+          <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="chevron-right"></mdb-icon> Collapsible menu
+          </mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <ul>
+              <li><a href="#" mdbWavesEffect>Link 1</a></li>
+              <li><a href="#" mdbWavesEffect>Link 2</a></li>
+            </ul>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <!-- Simple link -->
+        <mdb-accordion-item class="no-collase">
+          <mdb-accordion-item-head mdbWavesEffect><mdb-icon far icon="hand-pointer"></mdb-icon> Simple link
+          </mdb-accordion-item-head>
+          <mdb-accordion-item-body></mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <!-- Collapsible link -->
+        <mdb-accordion-item>
+          <mdb-accordion-item-head mdbWavesEffect><mdb-icon far icon="eye"></mdb-icon> Collapsible menu 2
+          </mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <ul>
+              <li><a href="#" mdbWavesEffect>Link 1</a></li>
+              <li><a href="#" mdbWavesEffect>Link 2</a></li>
+            </ul>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <!-- Simple link -->
+        <mdb-accordion-item class="no-collase">
+          <mdb-accordion-item-head mdbWavesEffect><mdb-icon far icon="gem"></mdb-icon> Simple link 2</mdb-accordion-item-head>
+          <mdb-accordion-item-body></mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+      </mdb-accordion>
+    </ul>
+  </li>
+  <!--/. Side navigation links -->
+  <div class="sidenav-bg mask-strong"></div>
+</mdb-side-nav>
+<!--/. Sidebar navigation -->
+
+  <!-- =================================================================================== -->
+<div class="container-fluid" style="margin-top:100px;">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="form-container">
+                <form th:action="@{/account/login}" method="POST" >
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" th:placeholder="Password" placeholder="Password">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="keepMe" name="keepMe">
+                        <label class="form-check-label pr-5" for="keepMe" style="font-size: 12px">Remember Me?</label>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                        <!-- <button type="button" class="btn btn-warning" Button label="signup" (click)="signup=true;signin=false">Sign-Up</button> -->
+                        <button type="button" class="btn btn-warning" >Sign-Up</button>
+                    </div>
+                    <!-- <div class="form-group" *ngIf="loginError">
+                        <p style="font-size: 12px; color: #FF1C19;">Email or Password invalid, please verify</p>
+                    </div> -->
+                    <!-- <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit" Button label="signin" (click)="signup=false;signin=true">Login</button> -->
+                    <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ======================================================== -->
+
+<!-- <app-signup *ngIf="signup"></app-signup> -->
+<!-- <app-signin *ngIf="signin"></app-signin> -->
+
+
+
+
+  
+<!-- <div style="margin-bottom: 100px;"> -->
+<!-- <footer>
+    <div class="border">
+        <span class="title">Project of Modern Web Architecture</span>
+        <span class="date">&copy; August 2020</span>
+    </div>
+    <div id="notify" style="display: none;">Alert</div>
+</footer> -->
+<!-- </div> -->
+</body>
+</html>
