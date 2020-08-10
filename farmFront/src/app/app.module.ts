@@ -61,4 +61,4 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }  
