@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule, 
     ReactiveFormsModule,
     RouterModule.forChild([
-      {path: '', redirectTo: 'signup', pathMatch: 'Full'},
+      {path: '', redirectTo: 'login', pathMatch: 'Full'},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent}
     ])

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { BackendRequestService } from '../../service/backendRequest.service';
 import { Router } from '@angular/router';
 import {
   FormGroup,
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit{
 
   roles = ['Customer', 'Farmer'];
 
-  constructor(private r: Router, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
 
     this.signupForm = formBuilder.group({
       'first_name': ["", [Validators.required]],
@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit{
   }
   onSubmit() {
     console.log(this.signupForm.value);
-    this.userService.signUp(this.signupForm.value).subscribe(resp => {
+    this.reqService.signUp(this.signupForm.value).subscribe(resp => {
       console.log(resp);
     })
   }

@@ -10,7 +10,6 @@ import { Component } from '@angular/core';
   
 // =======
   template: `
-    <h2> {{title}} </h2>
     <router-outlet></router-outlet>
   `,
   styles: ['']
