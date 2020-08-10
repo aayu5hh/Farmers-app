@@ -18,6 +18,7 @@ import{ RequestInterceptor } from'./request.interceptor';
     HttpClientModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
+      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)}
       // { path: "", redirectTo: "login", pathMatch: "full" }
       // { path: "", component: HomeComponent}
     ])

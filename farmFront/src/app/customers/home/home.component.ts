@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendRequestService } from '../../service/backendRequest.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private backendService: BackendRequestService) { }
 
   ngOnInit(): void {
+    this.backendService.getUserDetails().subscribe(data => console.log(data));
   }
 
 }

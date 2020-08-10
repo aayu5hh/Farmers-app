@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home/home.component';
-
-
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { RequestInterceptor } from '../request.interceptor';
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild([
+      // {path: '', redirectTo: 'signup', pathMatch: 'Full'},
+      {path: 'customer', component: HomeComponent, canActivate: [RequestInterceptor]},
+    ])
   ]
 })
 export class CustomersModule { }
