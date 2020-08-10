@@ -11,7 +11,7 @@ import { RequestInterceptor } from '../request.interceptor';
     CommonModule,
     RouterModule.forChild([
       {path: '', component: HomeComponent, canActivate: []},
-      {path: 'login', loadChildren: () => import("../users/users.module").then(m => m.UsersModule)},
+      // {path: 'login', loadChildren: () => import("../users/users.module").then(m => m.UsersModule)},
     ])
   ]
 })
