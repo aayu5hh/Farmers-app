@@ -11,7 +11,6 @@
   },
   "private": true,
   "dependencies": {
-    
     "-": "0.0.1",
     "@angular/animations": "^10.0.8",
     "@angular/cdk": "^10.1.2",
@@ -24,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "angular2-jwt": "^0.2.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.1",
     "rxjs": "~6.5.5",
     "save": "^2.4.0",
     "tslib": "^2.0.0",
