@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     }, 
     role: {type: String, required: true},
     address: String,
+    reputation: Number,
     product: [{
         product_name: {
             type: String,
@@ -25,7 +26,7 @@ const userSchema = new mongoose.Schema({
             required: true,
         },
         price: {
-            type: Number,
+            type: String,
             required: true
         },
         quantity: {
@@ -36,8 +37,7 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }],
-    reputation:Number
+    }]
     
 });
 
