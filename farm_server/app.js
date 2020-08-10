@@ -30,11 +30,9 @@ app.set('view engine', 'jade');
 
 mongoose.connect(process.env.MONGO_URL);
 
-<<<<<<< HEAD
 app.use(bodyParser.json());
-=======
 app.use(cors());
->>>>>>> 004505b8bbc225122998fa588c12ab04126b2cfd
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
