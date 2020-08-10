@@ -4,12 +4,12 @@ var express = require('express');
 var router = express.Router();
 var objectId = require('mongoose').Types.ObjectId;
 
-const Farmer = require('../model/user.js');
-const { route } = require('./users.js');
+const User = require('../model/user');
+// const router = require('./users.js');
 
-// localhost:3000/farmers/
+// localhost:3000/farmer/
 router.get('/farmer', (req,res)=>{
-    Farmer.find((err, docs)=>{
+    User.find((err, docs)=>{
         if(!err){
             res.send(docs);
         }else{
@@ -17,7 +17,11 @@ router.get('/farmer', (req,res)=>{
         }
     });
 });
-router.post('farmer/product/add', (req, res) => {
+
+// localhost:3000/farmer/_farmerid/add
+router.post('farmer/:farmerid/add', (req, res) => {
+    
+    const farmer_id = req.params.farmerid;
     const product_name = req.body.product_name;
     const product_description = req.body.product_description;
     const price = req.body.price;
@@ -26,7 +30,7 @@ router.post('farmer/product/add', (req, res) => {
 
     try{
         
-        const ProductData = new Farmer({
+        const ProductData = new User({
             name:product_name,
             description:product_description,
             price:price,
@@ -34,12 +38,15 @@ router.post('farmer/product/add', (req, res) => {
             image:product_image
         })
         
-        ProductData.save((err, docs) => {
-            if (!err) {
-                res.send(docs);
-              } else { 
-                 console.log("Error in product addition: "+ JSON.stringify(err, undefined, 2));
-              } 
+        User.Update({'product._id':product_id}, 
+            {'$set': {'product.$.post': ProductData }},
+             (err, doc) =>{
+                if(!err){
+                    res.send(doc);
+                }else{
+                    console.log('Error in Farmer Product Update: '+ JSON.stringify(err, undefined, 2));
+                }
+             
         })   
     }catch(e) {
         console.log({message: e});
@@ -47,13 +54,13 @@ router.post('farmer/product/add', (req, res) => {
     }
 });
 
-//localhost:3000/farmers/_id 
+//localhost:3000/farmer/_id 
 router.get('/farmer/:id', (req,res)=>{
     if(!objectId.isValid(req.params.id)){
         return res.status(400).send('No records with given id: '+ $(req.params.id));
     }
 
-    Farmer.findById(req.params.id, (err, doc) =>{
+    User.findById(req.params.id, (err, doc) =>{
         if(!err){
             res.send(doc);
         }else{
@@ -62,10 +69,12 @@ router.get('/farmer/:id', (req,res)=>{
     });
 });
 
-router.put('/farmer/:id', (req, res)=>{
-    if(!objectId.isValid(req.params.id)){
-        return res.status(400).send('No records with given id: '+ $(req.params.id));
-    }
+// localhost:3000/farmer/_id
+router.put('/farmer/:farmerid/:productid', (req, res)=>{
+    // if(!objectId.isValid(req.params.farmerid && req.params.productid)){
+    //     return res.status(400).send('No records with given farmerid or productid: '+ 
+    //         $(req.params.farmerid)+ " or "+ $(req.params.productid));
+    //     }
 
     const product_name = req.body.product_name;
     const product_description = req.body.product_description;
@@ -75,7 +84,7 @@ router.put('/farmer/:id', (req, res)=>{
 
     try{
         
-        const ProductData = new Farmer({
+        const ProductData = new User({
             name:product_name,
             description:product_description,
             price:price,
@@ -83,9 +92,11 @@ router.put('/farmer/:id', (req, res)=>{
             image:product_image
         }) 
         
-        Farmer.findByIdAndUpdate(req.params.id, {$set: ProductData}, {new: true}, (err, doc) =>{
+        User.findByIdAndUpdate(req.params.farmerid, 
+            {'$set': {'product.$.name': 'Orange' }},
+             {new: true}, (err, doc) =>{
             if(!err){
-                res.send(doc);
+               res.send(doc);
             }else{
                 console.log('Error in Farmer Product Update: '+ JSON.stringify(err, undefined, 2));
             }
@@ -96,12 +107,13 @@ router.put('/farmer/:id', (req, res)=>{
     }
 });
 
+// localhost:3000/farmer/_id
 router.delete('/:id', (req, res)=>{
     if(!objectId.isValid(req.params.id)){
         return res.status(400).send('No records with given id: '+ $(req.params.id));
     }
 
-    Farmer.findByIdAndRemove(req.params.id, (err, doc) =>{
+    User.findByIdAndRemove(req.params.id, (err, doc) =>{
         if(!err){
             res.send(doc);
         }else{

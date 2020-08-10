@@ -1,63 +1,88 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-    <title>Login</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous" defer></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous" defer></script>
-</head>
-<body>
-
-
-<div style="margin: 400px;">
-        <form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
+<form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
+  <div style="margin: 50px 400px; background-color: rgb(229, 241, 241);padding: 50px; border-radius: 20px;">
+    <p style="background-color: beige; text-align: center; text-decoration-color: mediumblue;">SIGN-UP FORM</p>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" formControlName="email" placeholder="Email">
+        <input type="email" class="form-control" id="inputEmail4" formControlName="email" placeholder="Email"required>
+        <div *ngIf="email.errors.required">
+          Email is required.
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword4">Password</label>
-        <input type="password" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
+
+        <!-- <input type="password" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
+        <div *ngIf="password.errors.required">
+          Password is required.
+        </div> -->
+
+        <input type="password" class="form-control" id="inputPassword4" formControlName="password"
+          placeholder="Password">
+
       </div>
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
+
+        <!-- <div class="form-group col-md-6">
           <label for="inputEmail4">FirstName</label>
           <input type="text" class="form-control" id="inputFirstname" formControlName="first_name" placeholder="FirstName">
+          <div *ngIf="first_name.errors.required">
+            FirstName is required.
+          </div>
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">LastName</label>
           <input type="text" class="form-control" id="inputLastname" formControlName="last_name" placeholder="LastName">
-        </div>
+          <div *ngIf="last_name.errors.required">
+            LastName is required.
+          </div>
+        </div>  -->
+
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">FirstName</label>
+        <input type="text" class="form-control" id="inputFirstname" formControlName="first_name"
+          placeholder="FirstName">
+
       </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">LastName</label>
+        <input type="text" class="form-control" id="inputLastname" formControlName="last_name" placeholder="LastName">
+      </div>
+    </div>
     <div class="form-group">
       <label for="inputAddress">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
+
+
+
+      <!-- <div *ngIf="address.errors.required">
+        Address is required.
+      </div>
     </div>
     <div class="form-group col-md-4">
         <label for="inputState">Role</label>
-        <select id="inputState" class="form-control">
+        <select id="inputState" class="form-control"formControlName="role">
           <option selected>Choose...</option>
           <option>Farmer</option>
           <option>Customer</option>
         </select>
+        <div *ngIf="role.errors.required">
+          Role is required.
+        </div>
+======= -->
+
+
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Role</label>
+      <div *ngFor="let r of roles">
+        <label>
+          <input type="radio" formControlName="role" [value]="r"> {{r}}
+        </label>
       </div>
+    </div>
 
     <div class="form-group">
       <div class="form-check">
@@ -67,10 +92,12 @@
         </label>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign up</button>
-  </form>
- 
+    <button type="submit" class="btn btn-primary">Sign up</button> &nbsp; <button class="btn btn-info"
+      (click)='goToLogin()'>Goto login</button>
+
+
   </div>
+</form>
 
 <!-- <footer>
     <div class="border">
@@ -79,8 +106,6 @@
     </div>
     <div id="notify" style="display: none;">Alert</div>
 </footer> -->
-</body>
-</html>
 
 
 
@@ -88,26 +113,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
+<!-- <form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
     <p><label>first name: </label>  <input type="text" formControlName="first_name"></p>
     
     <p><label>last name: </label>  <input type="text" formControlName="last_name"></p>
@@ -123,7 +129,7 @@
       </div>
     
     <p><button type="submit">SignUp</button>  <button (click) = 'goToLogin()'>Login</button></p>
-</form>
+</form> -->
 
 
 
@@ -158,4 +164,3 @@
     <button type="button" class="btn btn-default" (click)="onAddHobby()">Add Hobby</button>
     <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
   </form> -->
-  
