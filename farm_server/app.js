@@ -5,8 +5,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+const cors = require('cors');
 
 var usersRouter = require('./routes/users');
+var farmersRouter = require('./routes/farmers');
 
 var app = express();
 
@@ -16,6 +18,7 @@ app.set('view engine', 'jade');
 
 mongoose.connect(process.env.MONGO_URL);
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-// app.use('/farmers', farmersRouter);
+app.use('/farmers', farmersRouter);
 // app.use('/customers', customerRouter);
 
 // catch 404 and forward to error handler
