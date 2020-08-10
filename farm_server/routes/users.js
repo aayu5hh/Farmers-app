@@ -5,8 +5,12 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+
+const User = require('../model/user');
+
 const User = require('../model/account');
 const verifyToken = require('../middlewares/verifyToken');
+
 
 const saltRounds = 10;
 
@@ -17,11 +21,14 @@ router.post('/signup', async (req, res)=> {
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.role;
+    const address = req.body.address;
+    const product = req.body.product;
+    const reputation = req.body.reputation;
 
     try{
         const hashedPw = await bcrypt.hash(password, saltRounds);
     
-        const newAccount = {first_name: f_name, last_name: l_name, email: email, password: hashedPw, role: role};
+        const newAccount = {first_name: f_name, last_name: l_name, email: email, password: hashedPw, role: role, address:address};
         const account = new User(newAccount);
 
         await account.save();
