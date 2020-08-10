@@ -13,11 +13,7 @@
     
 </head>
 <body>  <!-- SideNav slide-out button -->
-
-
-
-
-    
+ 
 
     <div class="container-fluid" style="margin-top:100px;">
         <div class="row justify-content-md-center">
@@ -30,7 +26,7 @@
                             <input type="email" class="form-control" id="email" name="email" formControlName="email" aria-describedby="emailHelp"
                                    placeholder="Enter email">
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
-                            <div *ngIf="!loginForm.get('userData').get('email').valid">
+                            <div *ngIf="!loginForm.get('email').valid">
                                 Invalid Email
                               </div>
                         </div>
