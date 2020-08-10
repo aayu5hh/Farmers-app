@@ -10,8 +10,7 @@ import { RequestInterceptor } from '../request.interceptor';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      // {path: '', redirectTo: 'signup', pathMatch: 'Full'},
-      {path: 'customer', component: HomeComponent, canActivate: [RequestInterceptor]},
+      {path: '', component: HomeComponent, canActivate: [RequestInterceptor]},
     ])
   ]
 })
