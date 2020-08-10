@@ -41,7 +41,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import{ RequestInterceptor } from'./request.interceptor';
 import { SidebarComponent } from './sidebar/sidebar.component';
+
 import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders.component'
+
 
 @NgModule({
   declarations: [
@@ -54,6 +56,9 @@ import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders
     HttpClientModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
+
+      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)}
+
       // { path: "", redirectTo: "login", pathMatch: "full" }
       // { path: "", component: HomeComponent}
     ])
