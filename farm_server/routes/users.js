@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../model/user');
 
-const User = require('../model/account');
 const verifyToken = require('../middlewares/verifyToken');
 
 
