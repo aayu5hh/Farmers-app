@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {SidebarModule} from "ng-sidebar";
+//import {SidebarModule} from "ng-sidebar";
 
 import { AppComponent } from './app.component';
 // <<<<<<< HEAD
@@ -53,7 +53,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
-      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)}
+      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)},
+      {path :'farmers', loadChildren: ()=>import('./farmer-features/farmer-features.module').then(m=>m.FarmerFeaturesModule)},
+
       // { path: "", redirectTo: "login", pathMatch: "full" }
       // { path: "", component: HomeComponent}
     ])
