@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 // import {SidebarModule} from "ng-sidebar";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 // import { MatCheckboxModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule } from '@angular/material';
@@ -59,8 +60,8 @@ import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders
     // BrowserAnimationsModule,MatCheckboxModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatRippleModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
-
-      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)}
+      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)},
+      {path :'farmers', loadChildren: ()=>import('./farmer-features/farmer-features.module').then(m=>m.FarmerFeaturesModule)},
 
       // { path: "", redirectTo: "login", pathMatch: "full" }
       // { path: "", component: HomeComponent}
@@ -69,4 +70,4 @@ import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { }  
