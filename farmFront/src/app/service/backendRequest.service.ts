@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class BackendRequestService {
     return this.http.get(this.baseUrl + 'userdata');
   }
 
-  getAllFarmersData() {
-    return this.http.get(this.baseUrl + '/farmer');
+  getAllFarmersData(): Observable<any> {
+    return this.http.get(this.baseUrl + 'farmer');
   }
 }

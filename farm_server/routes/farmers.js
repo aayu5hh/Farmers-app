@@ -3,15 +3,18 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var objectId = require('mongoose').Types.ObjectId;
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const User = require('../model/user');
 // const router = require('./users.js');
+const verifyToken = require('../middlewares/verifyToken');
 
 // localhost:3000/farmer/
-router.get('/farmer', (req, res) => {
-    User.find((err, docs) => {
+router.get('/farmer', verifyToken, (req, res) => {
+    User.find({'role': 'farmer'}, (err, docs) => {
         if (!err) {
-            res.send(docs);
+            return res.send(docs);
         } else {
             console.log('Error in Retriving all Products: ' + JSON.stringify(err, undefined, 2));
         }
