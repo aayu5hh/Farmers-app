@@ -2,7 +2,6 @@ require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
-var objectId = require('mongoose').Types.ObjectId;
 
 const User = require('../model/order');
 

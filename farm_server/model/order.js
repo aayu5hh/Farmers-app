@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var objectId = require('mongoose').Types.ObjectId;
 
 const orderSchema = new mongoose.Schema({
 
@@ -11,14 +12,14 @@ const orderSchema = new mongoose.Schema({
     status: String,
     pickup_date: Date,
     farmer: {
-        id:Objectid(),
+        id:objectId,
         first_name: String,
         last_name: String,
         email: String,
         address: String
     },
     customer:{
-        id:Objectid(),
+        id:objectId,
         first_name: String,
         last_name: String,
         email: String
