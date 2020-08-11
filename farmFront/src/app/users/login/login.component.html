@@ -11,25 +11,20 @@
                             <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" formControlName="email"
                                  placeholder="Enter email" >
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
-                            <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&(loginForm.get('email').dirty || loginForm.get('email').touched)">
-                                Invalid Email
+                            <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&(loginForm.get('email').touched)">
+                               Invalid email!! Please Insert your ID!!
                             </div>
                             
                         </div>
-
-
-
                     
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" formControlName="password"
-                            name="password" placeholder="Password" minlength="6">
+                            name="password" placeholder="Password" >
                             <div class="text-danger" *ngIf="loginForm.get('password').hasError('required')&&(loginForm.get('password').dirty || loginForm.get('password').touched)">
                                Password cant be empty!!
-                            </div><br/>
-                            <div  class="text-danger" *ngIf="loginForm.get('password').hasError('minlength')&&(loginForm.get('password').dirty || loginForm.get('password').touched)">
-                                Password should be atleast 6 characters long!!
                             </div>
+                           
 
                             
                     </div>
