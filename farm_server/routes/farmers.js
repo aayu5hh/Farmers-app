@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 
 const User = require('../model/user');
-// const router = require('./users.js');
 
 //To fetch all users whose role is farmer
 // localhost:3000/farmer/
@@ -33,7 +32,6 @@ router.get('/farmer/:farmerid', (req, res) => {
 //To get all products of farmer with farmerid and productid
 //localhost:3000/:farmerid/_productid 
 router.get('/farmer/:farmerid/:productid', (req, res) => {
-
     User.find({'product._id': req.params.productid}, ['product'], (err, doc) => {
         if (!err) {
             res.send(doc);
