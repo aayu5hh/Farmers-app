@@ -8,6 +8,7 @@ import {
   FormBuilder,
   FormArray
 } from "@angular/forms";
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit{
 
     this.signupForm = formBuilder.group({
       'first_name': ["", [Validators.required]],
-      'last_name': [""],
+      'last_name': ["",[Validators.required]],
       'email': ["", [Validators.required, Validators.email]],
       'password': ["", [Validators.required]],
       'address':["",[Validators.required]],
@@ -37,11 +38,21 @@ export class SignupComponent implements OnInit{
   ngOnInit(){
     console.log('inside signup Component');
   }
+  showMsg:boolean=false
+  errMsg:boolean=false
+  respMsg;
   onSubmit() {
     console.log(this.signupForm.value);
-    this.reqService.signUp(this.signupForm.value).subscribe(resp => {
-      console.log(resp);
-    })
+    this.reqService.signUp(this.signupForm.value).subscribe(
+      (resp) => {
+        console.log(resp);
+        this.errMsg= resp['message'];
+      },
+      (err) => {
+        console.log(err);
+        this.errMsg = true;
+      }
+    )
   }
 
   goToLogin() {
