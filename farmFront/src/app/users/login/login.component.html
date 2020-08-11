@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" formControlName="password"
-                            name="password" placeholder="Password" minlength="6">
+                            name="password" placeholder="Password" >
                             <div class="text-danger" *ngIf="loginForm.get('password').hasError('required')&&(loginForm.get('password').dirty || loginForm.get('password').touched)">
                                Password cant be empty!!
                             </div>

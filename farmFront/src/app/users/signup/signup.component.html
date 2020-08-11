@@ -16,7 +16,7 @@
         <label for="inputPassword4">Password</label>
 
         <input type="password" class="form-control" id="inputPassword4" formControlName="password"
-          placeholder="Password">
+          placeholder="Password" minlength="6">
         <div class="text-danger"
           *ngIf="signupForm.get('password').hasError('required')&&(signupForm.get('password').dirty || signupForm.get('password').touched)">
           Password cant be empty!!
