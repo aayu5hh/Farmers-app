@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersModule } from './users/users.module';
 
 @Component({
   selector: 'app-root',
@@ -16,5 +17,6 @@ import { Component } from '@angular/core';
 // >>>>>>> 03be79f00ebdf2ef03a208d6fe954053ffac8873
 })
 export class AppComponent {
+
   title = 'farmFront';
 }

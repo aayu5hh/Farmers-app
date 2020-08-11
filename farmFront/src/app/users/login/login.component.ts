@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
     this.loginForm = formBuilder.group({
-      'email': ['', Validators.compose([Validators.required, Validators.email])],
-      'password': ['', Validators.required],
+      'email': ['', Validators.required],
+      'password': ['', Validators.required,Validators.minLength(6)],
     })
    }
 

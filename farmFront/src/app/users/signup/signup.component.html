@@ -1,79 +1,60 @@
 <form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
-  <div style="margin: 50px 400px; background-color: rgb(229, 241, 241);padding: 50px; border-radius: 20px;">
-    <p style="background-color: beige; text-align: center; text-decoration-color: mediumblue;">SIGN-UP FORM</p>
+  <div style="margin: 50px 400px; background-color: rgb(226, 247, 247);padding: 50px; border-radius: 20px;">
+    <p style="background-color: rgb(87, 116, 245);font-size: large;padding: 5px; text-align: center;text-decoration-color: mediumblue;height: 30px;">SIGN-UP FORM</p>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" formControlName="email" placeholder="Email"required>
-        <!-- <div *ngIf="email.errors.required">
-          Email is required.
-        </div> -->
+        <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="inputEmail4"
+          formControlName="email" placeholder="Email" required>
+        <div class="text-danger"
+          *ngIf="signupForm.get('email').hasError('required')&&(signupForm.get('email').dirty || signupForm.get('email').touched)">
+          Invalid Email
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword4">Password</label>
 
-        <!-- <input type="password" class="form-control" id="inputPassword4" formControlName="password" placeholder="Password">
-        <div *ngIf="password.errors.required">
-          Password is required.
-        </div> -->
-
         <input type="password" class="form-control" id="inputPassword4" formControlName="password"
           placeholder="Password">
-
+        <div class="text-danger"
+          *ngIf="signupForm.get('password').hasError('required')&&(signupForm.get('password').dirty || signupForm.get('password').touched)">
+          Password cant be empty!!
+        </div><br />
+        <div class="text-danger"
+          *ngIf="signupForm.get('password').hasError('minlength')&&(signupForm.get('password').dirty || signupForm.get('password').touched)">
+          Password should be atleast 6 characters long!!
+        </div>
       </div>
     </div>
 
-    <div class="form-row">
-
-        <!-- <div class="form-group col-md-6">
-          <label for="inputEmail4">FirstName</label>
-          <input type="text" class="form-control" id="inputFirstname" formControlName="first_name" placeholder="FirstName">
-          <div *ngIf="first_name.errors.required">
-            FirstName is required.
-          </div>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">LastName</label>
-          <input type="text" class="form-control" id="inputLastname" formControlName="last_name" placeholder="LastName">
-          <div *ngIf="last_name.errors.required">
-            LastName is required.
-          </div>
-        </div>  -->
+    <div class="form-row">    
 
       <div class="form-group col-md-6">
-        <label for="inputEmail4">FirstName</label>
+        <label for="inputFirstname">FirstName</label>
         <input type="text" class="form-control" id="inputFirstname" formControlName="first_name"
           placeholder="FirstName">
 
+        <div class="text-danger"
+          *ngIf="signupForm.get('first_name').hasError('required')&&(signupForm.get('first_name').dirty || signupForm.get('first_name').touched)">
+          FirstName should not be empty!!
+        </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputPassword4">LastName</label>
+        <label for="inputLastname">LastName</label>
         <input type="text" class="form-control" id="inputLastname" formControlName="last_name" placeholder="LastName">
+        <div class="text-danger"
+          *ngIf="signupForm.get('last_name').hasError('required')&&(signupForm.get('last_name').dirty || signupForm.get('last_name').touched)">
+          LastName should not be empty!!
+        </div>
       </div>
     </div>
     <div class="form-group">
       <label for="inputAddress">Address</label>
       <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
-
-
-
-      <!-- <div *ngIf="address.errors.required">
-        Address is required.
+      <div class="text-danger"
+        *ngIf="signupForm.get('address').hasError('required')&&(signupForm.get('address').dirty || signupForm.get('address').touched)">
+        Address should not be empty!!
       </div>
-    </div>
-    <div class="form-group col-md-4">
-        <label for="inputState">Role</label>
-        <select id="inputState" class="form-control"formControlName="role">
-          <option selected>Choose...</option>
-          <option>Farmer</option>
-          <option>Customer</option>
-        </select>
-        <div *ngIf="role.errors.required">
-          Role is required.
-        </div>
-======= -->
-
-
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">Role</label>
@@ -84,14 +65,7 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
-    </div>
+
     <button type="submit" class="btn btn-primary">Sign up</button> &nbsp; <button class="btn btn-info"
       (click)='goToLogin()'>Goto login</button>
 
@@ -130,37 +104,3 @@
     
     <p><button type="submit">SignUp</button>  <button (click) = 'goToLogin()'>Login</button></p>
 </form> -->
-
-
-
-<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" formControlName="username">
-      
-      <div class="form-group">
-        <label for="email">E-Mail</label>
-        <input type="text" class="form-control" id="email" formControlName="email">
-        <div *ngIf="!myForm.get('userData').get('email').valid">
-          Invalid Email
-        </div>
-      </div>
-    </div>
-  
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" formControlName="password">
-    </div>
-    <div class="radio" *ngFor="let g of genders">
-      <label>
-        <input type="radio" formControlName="gender" [value]="g"> {{g}}
-      </label>
-    </div>
-    <div formArrayName="hobbies">
-      <h3>Hobbies</h3>
-      <div class="form-group" *ngFor="let hobby of myForm.get('hobbies')['controls']; let i = index">
-        <input type="text" class="form-control" formControlName="{{i}}">
-      </div>
-    </div>
-    <button type="button" class="btn btn-default" (click)="onAddHobby()">Add Hobby</button>
-    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
-  </form> -->
