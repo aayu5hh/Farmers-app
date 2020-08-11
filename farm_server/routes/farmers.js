@@ -12,7 +12,7 @@ router.get('/farmer', (req, res) => {
         if (!err) {
             res.send(docs);
         } else {
-            console.log('Error in Retriving all Products: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all users whose role is farmer: ' + JSON.stringify(err, undefined, 2));
         }
     });
 });
@@ -24,7 +24,7 @@ router.get('/farmer/:farmerid', (req, res) => {
         if (!err) {
             res.send(doc);
         } else {
-            console.log('Error in Retriving Products by id: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all farmers by id: ' + JSON.stringify(err, undefined, 2));
         }
     })
 });
@@ -36,7 +36,7 @@ router.get('/farmer/:farmerid/:productid', (req, res) => {
         if (!err) {
             res.send(doc);
         } else {
-            console.log('Error in Retriving Products by id: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all Products of farmer: ' + JSON.stringify(err, undefined, 2));
         }
     })
 });
@@ -64,7 +64,7 @@ router.post('/farmer/:farmerid/add', (req, res) => {
                 if (!err) {
                     res.send(doc);
                 } else {
-                    console.log('Error in Farmer Product Update: ' + JSON.stringify(err, undefined, 2));
+                    console.log('Error in Farmer Product addition: ' + JSON.stringify(err, undefined, 2));
                     next(err);
                 }
 
