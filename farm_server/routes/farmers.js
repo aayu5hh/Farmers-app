@@ -32,8 +32,8 @@ router.get('/:farmerid', (req, res) => {
 
 //To get all products of farmer with farmerid and productid
 //localhost:3000/:farmerid/_productid 
-router.get('/:farmerid/:productid', (req, res) => {
-    User.find({ 'product._id': req.params.productid }, ['product'], (err, doc) => {
+router.get('/products/:farmerid', (req, res) => {
+    User.find({ '_id': farmer_id}, ['product'], (err, doc) => {
         if (!err) {
             res.send(doc);
         } else {

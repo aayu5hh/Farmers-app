@@ -19,7 +19,11 @@ import { FirstMessageComponent } from './first-message/first-message.component';
     RouterModule.forChild([
       {path:'checkout',component:CheckoutComponent},
       {path:'orders',component:CustomerOrdersComponent},
-      {path: '', component: HomeComponent, children: [{path: ':farmer_id',}]},  
+      {path: '', component: HomeComponent, children: [
+        {path: '', redirectTo: 'home'},
+        {path: 'home', component: FirstMessageComponent},
+        {path: ':farmer_id', component: ProductsComponent}
+      ]},  
 
       // {path: 'login', loadChildren: () => import("../users/users.module").then(m => m.UsersModule)},
     ])
