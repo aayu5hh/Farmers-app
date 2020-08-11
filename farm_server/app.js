@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 const cors = require('cors');
+var verifyToken = require('./middlewares/verifyToken');
 
 var usersRouter = require('./routes/users');
 var farmersRouter = require('./routes/farmers');
@@ -44,8 +45,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-app.use('/', farmersRouter);
-app.use('/', customerRouter);
+app.use('/farmer', verifyToken, farmersRouter);
+app.use('/customer', verifyToken, customerRouter);
+
+// app.use('/farmer', farmersRouter);
+// app.use('/customer', customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

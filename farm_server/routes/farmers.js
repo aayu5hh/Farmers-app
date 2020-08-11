@@ -20,7 +20,7 @@ router.get('/farmer', (req, res) => {
 
 //To get farmer with farmerid
 //localhost:3000/:farmerid/ 
-router.get('/farmer/:farmerid', (req, res) => {
+router.get('/:farmerid', (req, res) => {
     User.find({ '_id': req.params.farmerid }, (err, doc) => {
         if (!err) {
             res.send(doc);
@@ -32,7 +32,7 @@ router.get('/farmer/:farmerid', (req, res) => {
 
 //To get all products of farmer with farmerid and productid
 //localhost:3000/:farmerid/_productid 
-router.get('/farmer/:farmerid/:productid', (req, res) => {
+router.get('/:farmerid/:productid', (req, res) => {
     User.find({ 'product._id': req.params.productid }, ['product'], (err, doc) => {
         if (!err) {
             res.send(doc);
@@ -43,7 +43,7 @@ router.get('/farmer/:farmerid/:productid', (req, res) => {
 });
 
 // localhost:3000/farmer/_farmerid/add
-router.post('/farmer/:farmerid/add', (req, res) => {
+router.post('/:farmerid/add', (req, res) => {
 
     const farmer_id = req.params.farmerid;
     const { product_name, product_description, price, quantity, product_image } = req.body.product[0]
@@ -77,7 +77,7 @@ router.post('/farmer/:farmerid/add', (req, res) => {
 });
 
 // localhost:3000/farmer/_id
-router.patch('/farmer/:farmerid/:productid', (req, res) => {
+router.patch('/:farmerid/:productid', (req, res) => {
     const farmer_id = req.params.farmerid
     const product_id = req.params.productid;
     const name = req.body.product[0].product_name;
@@ -116,7 +116,7 @@ router.patch('/farmer/:farmerid/:productid', (req, res) => {
 });
 
 // localhost:3000/farmer/_id
-router.delete('/farmer/:farmerid/:productid', (req, res) => {
+router.delete('/:farmerid/:productid', (req, res) => {
     User.update({ '_id': req.params.farmerid, 'product._id': req.params.productid },
         {
             $pull: {
@@ -134,7 +134,7 @@ router.delete('/farmer/:farmerid/:productid', (req, res) => {
 });
 
 //get orders by farmer_id
-router.get('/farmer/orders/:farmerid', (req, res) => {
+router.get('/orders/:farmerid', (req, res) => {
     console.log('inside farmer orders');
     const farmer_id = req.params.farmerid;
     console.log(farmer_id);
@@ -147,7 +147,7 @@ router.get('/farmer/orders/:farmerid', (req, res) => {
     });
 });
 
-router.patch('/farmer/orders/:orderid/:status', (req, res) => {
+router.patch('/orders/:orderid/:status', (req, res) => {
     const order_id = req.params.orderid;
     const status = req.params.status;
     console.log(status);
