@@ -11,7 +11,7 @@
                             <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" formControlName="email"
                                  placeholder="Enter email" >
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
-                            <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&( loginForm.get('email').touched)">
+                            <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&(loginForm.get('email').touched)">
                                Invalid email!! Please Insert your ID!!
                             </div>
                             
