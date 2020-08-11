@@ -99,6 +99,7 @@ Content-Type: application/json
 GET http://localhost:3000/customer/5f3200783a70aa27529f83fb HTTP/1.1
 Content-Type: application/json
 
+//===== Order by customer 1
 //Customer to post all orders once he checkout
 ###
 POST http://localhost:3000/customer/orders HTTP/1.1
@@ -109,3 +110,19 @@ Content-Type: application/json
  "farmer": {"id": "5f3200783a70aa27529f83fb", "first_name":"Ayush1", "last_name":"Bh1", 
   "email": "ayush2@gmail.com", "address":"Ottumuwa"},"customer": {"id": "5f3161de3e2bac2ab6073f1b", 
   "first_name":"Ayush", "last_name":"Bh", "email":"ayush@gmail.com"}}
+
+//===== Order by customer 2
+###
+POST http://localhost:3000/customer/orders HTTP/1.1
+Content-Type: application/json
+
+{"order_items": [{"product_name": "apple", "quantity": 1, "item_total": 3}],
+ "total_price": 12, "status": "pending", "pickup_date": "15/02/2020",
+ "farmer": {"id":"5f3200783a70aa27529f83fb", "first_name":"Ayush1", "last_name":"Bh1", 
+  "email":"ayush2@gmail.com", "address":"Ottumuwa"},"customer": {"id":"5f3161de3e2bac2ab6073f1c", 
+  "first_name":"Ayush", "last_name":"Bh", "email":"ayush@gmail.com"}}
+
+//Customer all orders by customerid
+###
+GET http://localhost:3000/customer/orders/5f3161de3e2bac2ab6073f1b HTTP/1.1
+Content-Type: application/json

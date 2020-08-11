@@ -44,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import{ RequestInterceptor } from'./request.interceptor';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { RouteGuard } from './route.guard';
 
 import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders.component'
 
@@ -60,7 +61,8 @@ import{CustomerOrdersComponent} from './customer/customer-orders/customer-orders
     BrowserAnimationsModule,//MatCheckboxModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatRippleModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
-      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)},
+      {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
+      canActivate: [RouteGuard]},
       {path :'farmers', loadChildren: ()=>import('./farmer-features/farmer-features.module').then(m=>m.FarmerFeaturesModule)},
 
       // { path: "", redirectTo: "login", pathMatch: "full" }
