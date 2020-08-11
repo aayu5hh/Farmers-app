@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit{
   signupForm: FormGroup;
 
   roles = ['Customer', 'Farmer'];
+  
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
 

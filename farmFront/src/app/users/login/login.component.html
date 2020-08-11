@@ -5,20 +5,33 @@
                 <div class="form-container">
 
                     <div>
+                      
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email" formControlName="email"
-                                aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" formControlName="email"
+                                 placeholder="Enter email" >
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
-                            <!-- <div *ngIf="!loginForm.get('email').valid">
+                            <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&(loginForm.get('email').dirty || loginForm.get('email').touched)">
                                 Invalid Email
-                            </div> -->
+                            </div>
+                            
                         </div>
+
+
+
                     
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" formControlName="password"
-                            name="password" placeholder="Password">
+                            name="password" placeholder="Password" minlength="6">
+                            <div class="text-danger" *ngIf="loginForm.get('password').hasError('required')&&(loginForm.get('password').dirty || loginForm.get('password').touched)">
+                               Password cant be empty!!
+                            </div><br/>
+                            <div  class="text-danger" *ngIf="loginForm.get('password').hasError('minlength')&&(loginForm.get('password').dirty || loginForm.get('password').touched)">
+                                Password should be atleast 6 characters long!!
+                            </div>
+
+                            
                     </div>
                 </div>
                     <div class="form-group form-check">
