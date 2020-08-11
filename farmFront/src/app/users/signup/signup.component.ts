@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit{
   signupForm: FormGroup;
 
   roles = ['Customer', 'Farmer'];
+  
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
 
@@ -27,6 +28,7 @@ export class SignupComponent implements OnInit{
       'last_name': [""],
       'email': ["", [Validators.required, Validators.email]],
       'password': ["", [Validators.required]],
+      'address':["",[Validators.required]],
       'role': ['Customer']
 
     });

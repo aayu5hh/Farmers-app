@@ -1,0 +1,48 @@
+<h2 style="text-align: left; color: lightseagreen;padding: 20px;">OrderId: 123</h2>
+<div style="margin: 0px 100px; padding: 0px;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>     
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="col">Potato</td>
+          <td scope="col">4</td>
+          <td scope="col">$2</td>     
+          
+        </tr>     
+      
+        <tr *ngFor="item of items">
+          <td>{{item.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.Price}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Total:$2</td>
+          <!-- <td>Total:*ngFor="let price of prices"</td> -->
+         </tr>
+      </tbody>
+    </table>
+  
+    <p>
+        <strong>Seller:</strong>Dave<br/>
+        <strong>Status:</strong>Complete<br/>
+        <strong>Order-Date:</strong>10 Aug,2020
+
+    </p>
+    <span><h4>Rating:</h4>
+        <button type="button" class="btn btn-danger">Bad</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-warning">Good</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success">Excellent</button>
+    </span>
+        
+        
+    </div>
+    
