@@ -62,8 +62,6 @@ Content-Type: application/json
 "product_description":"It is from Butwal","price":"$1.25", "quantity":5, 
 "product_image":"https://picsum.photos/200/300"}]}
 
-
-
 ###
 //update farmer product by id
 PATCH http://localhost:3000/farmer/5f31bffef040b7e404545b69/5f31bffef040b7e404545b6a HTTP/1.1
@@ -108,8 +106,8 @@ Content-Type: application/json
 {"order_items": [{"product_name": "apple", "quantity": 1, "item_total": 3}],
  "total_price": 12, "status": "pending", "pickup_date": "15/02/2020",
  "farmer": {"id": "5f3200783a70aa27529f83fb", "first_name":"Ayush1", "last_name":"Bh1", 
-  "email": "ayush2@gmail.com", "address":"Ottumuwa"},"customer": {"id": "5f3161de3e2bac2ab6073f1b", 
-  "first_name":"Ayush", "last_name":"Bh", "email":"ayush@gmail.com"}}
+  "email": "npaudel@miu.edu", "address":"Ottumuwa"},"customer": {"id": "5f3161de3e2bac2ab6073f1b", 
+  "first_name":"Ayush", "last_name":"Bh", "email":"npaudel@miu.edu"}}
 
 //===== Order by customer 2
 ###
@@ -122,21 +120,22 @@ Content-Type: application/json
   "email":"npaudel@miu.edu", "address":"Ottumuwa"},"customer": {"id":"5f3161de3e2bac2ab6073f1c", 
   "first_name":"Ayush", "last_name":"Bh", "email":"npaudel@miu.edu"}}
 
-//Customer all orders by customerid
+//by Customer for his all orders by customerid
 ###
 GET http://localhost:3000/customer/orders/5f3161de3e2bac2ab6073f1c HTTP/1.1
 Content-Type: application/json
 
-//farmer all orders by farmers id
+//by farmer for his all orders by farmers id
 ###
 GET http://localhost:3000/farmer/orders/5f3200783a70aa27529f83fb HTTP/1.1
 Content-Type: application/json
 
-//change status by farmer
+//change status by farmer from pending to ready
 ###
 PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/ready HTTP/1.1
 Content-Type: application/json
 
+//change status by farmer from ready to completed
 ###
 PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/completed HTTP/1.1
 Content-Type: application/json
