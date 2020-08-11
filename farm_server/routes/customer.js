@@ -69,12 +69,27 @@ router.post('/orders', async (req, res) => {
           
           var mailOptions = {
             from: 'navinhelpdesk@gmail.com',
-            to: 'npaudel@miu.edu',
-            subject: 'From farmer1 for your order',
+            to: customerEmail,
+            subject: 'Order is placed!',
             text: 'Thank you, for your order! We will send you mail once it is ready.'
+          };
+
+          var mailOptions1 = {
+            from: 'navinhelpdesk@gmail.com',
+            to: farmerEmail,
+            subject: 'order for you!',
+            text: 'order has been done by a customer. His email id is '+customerEmail
           };
           
           transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
+          transporter.sendMail(mailOptions1, function(error, info){
             if (error) {
               console.log(error);
             } else {
