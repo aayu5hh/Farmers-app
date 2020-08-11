@@ -2,6 +2,7 @@ require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 const User = require('../model/user');
 const Order = require('../model/order');
@@ -53,6 +54,29 @@ router.post('/customer/orders', async (req, res) => {
         await order.save();
         console.log(newOrder);
         res.json({ message: 'Orders are done successfully' });
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'navinhelpdesk@gmail.com',
+              pass: 'na252pa14'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'navinhelpdesk@gmail.com',
+            to: 'npaudel@miu.edu',
+            subject: 'From farmer1 for your order',
+            text: 'Thank you, for your order! We will send you mail once it is ready.'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 
     } catch (e) {
 
