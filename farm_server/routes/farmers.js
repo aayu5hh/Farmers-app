@@ -2,23 +2,43 @@ require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
-var objectId = require('mongoose').Types.ObjectId;
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const User = require('../model/user');
-// const router = require('./users.js');
-const verifyToken = require('../middlewares/verifyToken');
 
+//To fetch all users whose role is farmer
 // localhost:3000/farmer/
-router.get('/farmer', verifyToken, (req, res) => {
-    User.find({'role': 'farmer'}, (err, docs) => {
+router.get('/farmer', (req, res) => {
+    User.find({'role':'farmer'}, (err, docs) => {
         if (!err) {
-            return res.send(docs);
+            res.send(docs);
         } else {
-            console.log('Error in Retriving all Products: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all users whose role is farmer: ' + JSON.stringify(err, undefined, 2));
         }
     });
+});
+
+//To get farmer with farmerid
+//localhost:3000/:farmerid/ 
+router.get('/farmer/:farmerid', (req, res) => {
+    User.find({'_id': req.params.farmerid}, (err, doc) => {
+        if (!err) {
+            res.send(doc);
+        } else {
+            console.log('Error in Retriving all farmers by id: ' + JSON.stringify(err, undefined, 2));
+        }
+    })
+});
+
+//To get all products of farmer with farmerid and productid
+//localhost:3000/:farmerid/_productid 
+router.get('/farmer/:farmerid/:productid', (req, res) => {
+    User.find({'product._id': req.params.productid}, ['product'], (err, doc) => {
+        if (!err) {
+            res.send(doc);
+        } else {
+            console.log('Error in Retriving all Products of farmer: ' + JSON.stringify(err, undefined, 2));
+        }
+    })
 });
 
 // localhost:3000/farmer/_farmerid/add
@@ -44,7 +64,7 @@ router.post('/farmer/:farmerid/add', (req, res) => {
                 if (!err) {
                     res.send(doc);
                 } else {
-                    console.log('Error in Farmer Product Update: ' + JSON.stringify(err, undefined, 2));
+                    console.log('Error in Farmer Product addition: ' + JSON.stringify(err, undefined, 2));
                     next(err);
                 }
 
@@ -54,33 +74,6 @@ router.post('/farmer/:farmerid/add', (req, res) => {
         res.json({ message: e });
     }
 });
-
-//To get farmer with farmerid
-//localhost:3000/:farmerid/ 
-router.get('/farmer/:farmerid', (req, res) => {
-
-    User.find({'_id': req.params.farmerid}, (err, doc) => {
-        if (!err) {
-            res.send(doc);
-        } else {
-            console.log('Error in Retriving Products by id: ' + JSON.stringify(err, undefined, 2));
-        }
-    })
-});
-
-//To get all products of farmer with farmerid and productid
-//localhost:3000/:farmerid/_productid 
-router.get('/farmer/:farmerid/:productid', (req, res) => {
-
-    User.find({'product._id': req.params.productid}, ['product'], (err, doc) => {
-        if (!err) {
-            res.send(doc);
-        } else {
-            console.log('Error in Retriving Products by id: ' + JSON.stringify(err, undefined, 2));
-        }
-    })
-});
-
 
 // localhost:3000/farmer/_id
 router.patch('/farmer/:farmerid/:productid', (req  ,res) => {
