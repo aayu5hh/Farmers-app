@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  username;
   allFarmers;
   
   constructor(private backendService: BackendRequestService, private r: Router, private activatedRoute: ActivatedRoute) { }
@@ -29,7 +28,7 @@ export class HomeComponent implements OnInit {
         console.log(data);
         this.allFarmers = data;
       },
-      (err) => this.r.navigate(['login'])
+      (err) => console.log(err)
     )
   }
 
