@@ -5,7 +5,7 @@
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
         <input type="email" class="form-control" id="inputEmail4" formControlName="email" placeholder="Email"required>
-        <div *ngIf="email.errors.required">
+        <div *ngIf="signupForm.get('email').valid">
           Email is required.
         </div>
       </div>

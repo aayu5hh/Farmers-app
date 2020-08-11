@@ -21,4 +21,8 @@ export class BackendRequestService {
   getUserDetails(){
     return this.http.get(this.baseUrl + 'userdata');
   }
+
+  getAllFarmersData() {
+    return this.http.get(this.baseUrl + '/farmer');
+  }
 }

@@ -8,10 +8,10 @@ const User = require('../model/user');
 // const router = require('./users.js');
 
 // localhost:3000/farmer/
-router.get('/farmer', (req,res)=>{
-    User.find((err, docs)=>{
+router.get('/farmer', verifyToken, (req,res)=>{
+    User.find({role: 'farmer'}, async (err, docs)=>{
         if(!err){
-            res.send(docs);
+           return res.send(docs);
         }else{
             console.log('Error in Retriving all Products: '+ JSON.stringify(err, undefined, 2));
         }
