@@ -63,13 +63,15 @@ router.post('/customer/orders', async (req, res) => {
 
 //get orders by customer id
 router.get('/customer/orders/:customerid', (req, res) => {
-    const customer_id = (req.params.customerid).toString();
-    User.find({ 'customer.id': customer_id }, (err, docs) => {
+    const customer_id = req.params.customerid;
+    console.log(customer_id);
+    Order.find({ 'customer.id': customer_id }, (err, docs) => {
         if (!err) {
             res.send(docs);
         } else {
-            console.log('Error in Retriving all Products: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all customer orders: ' + JSON.stringify(err, undefined, 2));
         }
     });
 });
+
 module.exports = router;
