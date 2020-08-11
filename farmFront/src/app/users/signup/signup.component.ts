@@ -18,6 +18,9 @@ import { error } from '@angular/compiler/src/util';
 export class SignupComponent implements OnInit{
 
   signupForm: FormGroup;
+  showMsg;
+  errMsg;
+  respMsg;
 
   roles = ['Customer', 'Farmer'];
   
@@ -38,20 +41,26 @@ export class SignupComponent implements OnInit{
   ngOnInit(){
     console.log('inside signup Component');
   }
-  showMsg:boolean=false
-  errMsg:boolean=false
-  respMsg;
+
   onSubmit() {
     console.log(this.signupForm.value);
     this.reqService.signUp(this.signupForm.value).subscribe(
       (resp) => {
         console.log(resp);
-        this.errMsg= resp['message'];
-      },
-      (err) => {
-        console.log(err);
-        this.errMsg = true;
+        if(resp.message.errors) {
+          this.errMsg= resp.message._message;
+          this.respMsg= undefined;
+        } else {
+    
+          this.respMsg= resp['message'];
+          this.errMsg = undefined;
+
+        }
       }
+      // (err) => {
+      //   console.log(err);
+      //   this.errMsg = err.message._message;
+      // }
     )
   }
 
