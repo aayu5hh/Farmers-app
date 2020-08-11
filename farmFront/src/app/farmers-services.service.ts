@@ -16,10 +16,10 @@ export class FarmersServicesService {
   }
 
   updateFarmerProduct(farmer_id, prod_id, body){
-    return this.http.put(`https://localhost:3000/farmer/${farmer_id}/${prod_id}`, body);
+    return this.http.patch(`https://localhost:3000/farmer/${farmer_id}/${prod_id}`, body);
   }
-  deleteFarmerProduct(product_id){
-    return this.http.delete(`https://localhost:3000/farmer/${product_id}`);
+  deleteFarmerProduct(farmer_id,product_id){
+    return this.http.delete(`https://localhost:3000/farmer/${farmer_id}/${product_id}`);
   }
 
   getFarmerOrders(farmer_id){

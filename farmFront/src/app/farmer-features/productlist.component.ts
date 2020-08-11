@@ -12,10 +12,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
     <li *ngFor="let product of products " >
       <mat-chip-list aria-label="Fish selection">
       <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/>
-        <mat-chip> Product: {{ product.name }}</mat-chip>
+        <mat-chip> Product: {{ product.product_name }}</mat-chip>
         <mat-chip> Price $ {{product.price }}</mat-chip>
         <mat-chip> Amount In Stock {{ product.quantity}}</mat-chip>
-        <mat-chip> Amount In Stock {{ product.description}}</mat-chip>
+        <mat-chip> Amount In Stock {{ product.product_description}}</mat-chip>
         <button mat-button color='primary'> <a [routerLink]="['product',product._id]" [state]="{product:product}">Edit Product</a> </button>
         <button mat-button color="warn" (click)=deleteProduct(user._id,product._id)><u>Delete Product</u></button>
         </mat-chip-list>
@@ -44,9 +44,9 @@ export class ProductlistComponent implements OnInit {
   constructor(private router: Router, private farmerService: FarmersServicesService) { }
 
 
-  deleteProduct(product_id) {
+  deleteProduct(farmer_id,product_id) {
     //  we will pass data to backend throuth services 
-    this.obs$ = this.farmerService.deleteFarmerProduct(product_id).subscribe(data => {
+    this.obs$ = this.farmerService.deleteFarmerProduct(farmer_id,product_id).subscribe(data => {
       console.log(data);
     })
   }
@@ -55,7 +55,7 @@ export class ProductlistComponent implements OnInit {
     //  we will get data from backend throuth services
     this.loading = false
     // dammy data 
-    this.products  = [{ _id: 1001 , name : 'Tomato', price: 20, quantity:200, description : 'This is dammy ', picture :'' }]
+    this.products  = [{ _id: 1001 , product_name : 'Tomato', price: 20, quantity:200, product_description : 'This is dammy ', picture :'' }]
     const helper = new JwtHelperService();
     const token = JSON.parse(localStorage.getItem('token'));
     const user = helper.decodeToken(token)

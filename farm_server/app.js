@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://user:123@mwaprojectcluster.16aa0.mongodb.net/Far
 var app = express();
 
 
-// app.listen(3000, ()=> console.log('Server started at port: 3000'))
+app.listen(3000, ()=> console.log('Server started at port: 3000'))
 
 
 // view engine setup
