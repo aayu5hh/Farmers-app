@@ -78,6 +78,7 @@ router.get('/farmer/:farmerid/:productid', (req, res) => {
     })
 });
 
+
 // localhost:3000/farmer/_id
 router.patch('/farmer/:farmerid/:productid', (req  ,res) => {
     const farmer_id = req.params.farmerid
@@ -116,8 +117,10 @@ router.patch('/farmer/:farmerid/:productid', (req  ,res) => {
 
 // localhost:3000/farmer/_id
 router.delete('/farmer/:farmerid/:productid', (req, res) => {
-
-    User.findByIdAndRemove({'product._id': req.params.productid}, ['product'], (err, doc) => {
+    User.update({'_id':req.params.farmerid,'product._id':req.params.productid}, 
+     {$pull: {'product': {'_id':req.params.productid}
+    }},
+        (err, doc) => {
         if (!err) {
             res.send(doc);
         } else {

@@ -42,7 +42,7 @@ Content-Type: application/json
 
 ####
 //add farmer products
-POST http://localhost:3000/farmer/5f31bffef040b7e404545b69/add HTTP/1.1
+POST http://localhost:3000/farmer/5f3200783a70aa27529f83fb/add HTTP/1.1
 Content-Type: application/json
 
 {"product":[{"product_name":"Pineapple", 
@@ -51,12 +51,12 @@ Content-Type: application/json
 
 ####
 //get farmers by his id
-GET http://localhost:3000/farmer/5f31bffef040b7e404545b69 HTTP/1.1
+GET http://localhost:3000/farmer/5f3200783a70aa27529f83fb HTTP/1.1
 Content-Type: application/json
 
 ####
 //get particular farmer with his all products and it gives farmer id too
-GET http://localhost:3000/farmer/5f31bffef040b7e404545b69/5f31bffef040b7e404545b6a/ HTTP/1.1
+GET http://localhost:3000/farmer/5f3200783a70aa27529f83fb/5f3200783a70aa27529f83fc/ HTTP/1.1
 Content-Type: application/json
 
 ####
@@ -70,5 +70,5 @@ Content-Type: application/json
 
 ####
 //delete farmer product by id
-DELETE http://localhost:3000/farmer/5f3162a69d88192c96cb0a36/5f3162a69d88192c96cb0a37/ HTTP/1.1
+DELETE http://localhost:3000/farmer/5f3200783a70aa27529f83fb/5f320ebdec5d1547479f0813/ HTTP/1.1
 Content-Type: application/json
