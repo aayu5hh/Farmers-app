@@ -39,9 +39,6 @@ export class ListofordersComponent implements OnInit {
 
 
 
-deleteProduct(farmer_id, product_id){
-
-}
 
 
 onOrderReady(id, email):void{
@@ -54,7 +51,6 @@ onOrderCompleted(id){
 
   ngOnInit(): void {
   
-
     // // dammy data 
      this.orders  = [{ total_price: 200, pickup_date : '08/12/2020', status: 'Pending', farmer : {_id :10}, customer :{_id : 12}}]
      

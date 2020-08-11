@@ -1,16 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormGroup, FormBuilder, Validators}  from '@angular/forms'
 import { Router } from '@angular/router';
-import{FarmersServicesService} from'../farmers-services.service'
+import{FarmersServicesService} from'../farmers-services.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+
 @Component({
   selector: 'app-editproduct',
   template: `
-
+  <p  class="card-title text-center">
+  Please Fill out to edit 
+</p>
   <div class="card text-center">
   <mat-divider></mat-divider><br /><br />
-  <p class="card-title">
-    Please Fill out to edit 
-  </p>
+  
   <mat-divider></mat-divider>
   <div>
     <form [formGroup]="myForm"   (ngSubmit)="onsubmit()" >
@@ -78,10 +81,16 @@ public myForm: FormGroup;
   onsubmit(){
     
     //  we will post the new edited data to back end ( this.form.vlaue )
-    // console.log(this.myForm.value)
      // navigate back to product list 
-    //this.subscrib$ =  this.farmersservice.editFarmersProduct("farmer_id", "product_id",this.myForm.value).subscribe( data=>{}
-  }
+     const helper = new JwtHelperService();
+     const token = JSON.parse(localStorage.getItem('token'));
+     const user = helper.decodeToken(token)
+     console.log(user, token, this.myForm.value);
+     this.subscrib$ =  this.farmersservice.updateFarmerProduct(user._id, this.product._id, this.myForm.value).subscribe( data=>{
+                 console.log(data);
+  })
+
+}
 
   ngOnDestroy() {
     //destroy /unsubscribe

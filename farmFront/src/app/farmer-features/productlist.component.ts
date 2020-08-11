@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { FarmersServicesService } from '../farmers-services.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
 @Component({
   selector: 'app-productlist',
   template: `
-  <div *ngIf="!loading; else lodTemp" class="card-title">
-  <p class='card-title'> <b> Your Product List </b> </p>
+  <div *ngIf="!loading; else lodTemp" >
+  <p> <b> Your Product List </b> </p>
   <ol>
     <li *ngFor="let product of products " >
       <mat-chip-list aria-label="Fish selection">
@@ -34,27 +37,39 @@ import { Router} from '@angular/router';
 export class ProductlistComponent implements OnInit {
 
   public products;
-  //public loading: boolean = true;
+  public loading: boolean = true;
   public obs$;
   public user;
-  
-  constructor(private router: Router){}
+
+  constructor(private router: Router, private farmerService: FarmersServicesService) { }
 
 
-deleteProduct(farmer_id,product_id){
-   //  we will pass data to backend throuth services 
-
-}
+  deleteProduct(product_id) {
+    //  we will pass data to backend throuth services 
+    this.obs$ = this.farmerService.deleteFarmerProduct(product_id).subscribe(data => {
+      console.log(data);
+    })
+  }
 
   ngOnInit() {
-       //  we will get data from backend throuth services
-       //this.loading = false 
-       // dammy data 
-       this.products  = [{ _id: 1001 , name : 'Tomato', price: 20, quantity:200, description : 'This is dammy ', picture :'' }]
+    //  we will get data from backend throuth services
+    this.loading = false
+    // dammy data 
+    this.products  = [{ _id: 1001 , name : 'Tomato', price: 20, quantity:200, description : 'This is dammy ', picture :'' }]
+    const helper = new JwtHelperService();
+    const token = JSON.parse(localStorage.getItem('token'));
+    const user = helper.decodeToken(token)
+    console.log(user, token);
+    this.obs$ = this.farmerService.getFarmerProducts(user._id).subscribe(data => {
+      console.log(data);
+    })
   }
 
 
   ngOnDestroy() {
-       // destroy sunscription 
+    // destroy sunscription 
+    if (this.obs$) {
+      this.obs$.unsubscribe();
+    }
   }
 }

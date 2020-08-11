@@ -13,6 +13,7 @@ const verifyToken = require('../middlewares/verifyToken');
 const saltRounds = 10;
 
 router.post('/signup', async (req, res)=> {
+    console.log(req)
     const f_name = req.body.first_name;
     const l_name = req.body.last_name; 
 

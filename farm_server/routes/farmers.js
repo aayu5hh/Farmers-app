@@ -26,7 +26,7 @@ router.post('farmer/:farmerid/add', (req, res) => {
     const product_description = req.body.product_description;
     const price = req.body.price;
     const quantity = req.body.quantity;
-    const product_image = req.body.product_image;
+    const product_image = req.body.product_image;  // image url 
 
     try{
         
@@ -80,7 +80,7 @@ router.put('/farmer/:farmerid/:productid', (req, res)=>{
     const product_description = req.body.product_description;
     const price = req.body.price;
     const quantity = req.body.quantity;
-    const product_image = req.body.product_image;
+    const product_image = req.body.product_image; // we can't update the image 
 
     try{
         

@@ -17,7 +17,7 @@ import {
 export class SignupComponent implements OnInit{
 
   signupForm: FormGroup;
-
+  email;      /**  This's simon modification !! */
   roles = ['Customer', 'Farmer'];
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {

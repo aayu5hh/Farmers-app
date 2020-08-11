@@ -5,19 +5,32 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.card {
 
+
+
+.form-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+
+.card {
     width: 40rem;
     margin: 0 auto;
   }
 
-  .card-title {
+.card-title {
       font-size: 1rem;
       font-weight: bolder;
       font-style: italic;
       color:rgba(5, 105, 5, 0.815);
       height: 45;
-      width: 45;
+      /* width: 45; */
   }
 
 
