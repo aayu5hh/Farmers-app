@@ -10,6 +10,7 @@ const cors = require('cors');
 
 var usersRouter = require('./routes/users');
 var farmersRouter = require('./routes/farmers');
+var customerRouter = require('./routes/customer');
 
 mongoose.connect('mongodb+srv://user:123@mwaprojectcluster.16aa0.mongodb.net/FarmersDb?retryWrites=true&w=majority', (err)=>{
   if(!err)
@@ -44,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
 app.use('/', farmersRouter);
-// app.use('/customers', customerRouter);
+app.use('/', customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
