@@ -1,5 +1,5 @@
 <form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
-  <div style="margin: 50px 400px; background-color: rgb(226, 247, 247);padding: 50px; border-radius: 20px;box-shadow: darkblue;">
+  <div style="margin: 50px 400px; background-color: rgb(226, 247, 247);padding: 50px; border-radius: 20px;">
     <p style="background-color: rgb(87, 116, 245);font-size: large;padding: 5px; text-align: center;text-decoration-color: mediumblue;height: 30px;">SIGN-UP FORM</p>
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -24,7 +24,6 @@
           *ngIf="signupForm.get('password').hasError('minlength')&&(signupForm.get('password').dirty || signupForm.get('password').touched)">
           Password should be atleast 6 characters long!!
         </div>
-
       </div>
     </div>
 
@@ -39,9 +38,6 @@
           *ngIf="signupForm.get('first_name').hasError('required')&&(signupForm.get('first_name').dirty || signupForm.get('first_name').touched)">
           FirstName should not be empty!!
         </div>
-
-
-
       </div>
       <div class="form-group col-md-6">
         <label for="inputLastname">LastName</label>
@@ -50,8 +46,6 @@
           *ngIf="signupForm.get('last_name').hasError('required')&&(signupForm.get('last_name').dirty || signupForm.get('last_name').touched)">
           LastName should not be empty!!
         </div>
-
-
       </div>
     </div>
     <div class="form-group">
@@ -61,27 +55,6 @@
         *ngIf="signupForm.get('address').hasError('required')&&(signupForm.get('address').dirty || signupForm.get('address').touched)">
         Address should not be empty!!
       </div>
-
-
-
-
-      <!-- <div *ngIf="address.errors.required">
-        Address is required.
-      </div>
-    </div>
-    <div class="form-group col-md-4">
-        <label for="inputState">Role</label>
-        <select id="inputState" class="form-control"formControlName="role">
-          <option selected>Choose...</option>
-          <option>Farmer</option>
-          <option>Customer</option>
-        </select>
-        <div *ngIf="role.errors.required">
-          Role is required.
-        </div>
-======= -->
-
-
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">Role</label>
