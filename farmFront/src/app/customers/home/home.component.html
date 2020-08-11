@@ -1,1 +1,58 @@
-<p>This is the home component</p>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<app-cust-navbar></app-cust-navbar>
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">WELCOME TO THE FARMER'S SHOP</h1>
+        <p class="lead text-muted mb-0">Make your shopping Safe, Easier, and Smarter during this COVID-19 pandemic.</p>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="category.html">Farmers</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Select Farmers </div>
+                <ul class="list-group category_block">
+                    <div *ngFor="let f of allFarmers">
+                        <li class="list-group-item"><a [routerLink] = "['f._id']">{{f.first_name}}</a></li>
+                    </div>
+                </ul>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase">Top product</div>
+                <div class="card-body">
+                    <img class="img-fluid" src="https://sc02.alicdn.com/kf/UTB8jE5auYnJXKJkSahGq6xhzFXaL.jpg_350x350.jpg" />
+                    <h5 class="card-title">Crispy Apples</h5>
+                    <p class="card-text">Our big, sweet, crispy apples are handpicked at their finest, bursting with unforgettable flavor. Other apples sit in warehouses for months; ours are still on the tree when you place your order.</p>
+                    <p class="bloc_left_price">19.00 $</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            
+            <app-products></app-products>
+            <!-- <app-first-message></app-first-message> -->
+            
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<app-cust-footer></app-cust-footer>

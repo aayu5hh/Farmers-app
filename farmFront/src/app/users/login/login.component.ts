@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
     this.loginForm = formBuilder.group({
       'email': ['', Validators.required],
-      'password': ['', Validators.required]
+      'password': ['', Validators.compose([Validators.required,Validators.minLength(6)])],
     })
    }
 
@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
         this.r.navigate(['customers']);
       },
       (err) => console.log(err.error) )
+  }
+
+  goToSignUp(){
+    this.r.navigate(['signup']);
   }
 
 }
