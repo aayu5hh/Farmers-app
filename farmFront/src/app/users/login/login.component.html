@@ -12,13 +12,10 @@
                                  placeholder="Enter email" >
                             <small id="emailHelp" class="from-text text-muted">We'll never share your email.</small>
                             <div class="text-danger" *ngIf="loginForm.get('email').hasError('required')&&( loginForm.get('email').touched)">
-                                Invalid Email
+                               Invalid email!! Please Insert your ID!!
                             </div>
                             
                         </div>
-
-
-
                     
                     <div class="form-group">
                         <label for="password">Password</label>
