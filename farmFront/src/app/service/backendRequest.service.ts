@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BackendRequestService {
-  private responseMsg;
+  
   baseUrl: String = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
@@ -25,5 +25,9 @@ export class BackendRequestService {
 
   getAllFarmersData(): Observable<any> {
     return this.http.get(this.baseUrl + 'farmer');
+  }
+
+  getFarmerProductsById(id) {
+    return this.http.get(this.baseUrl + '');
   }
 }
