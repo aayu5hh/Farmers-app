@@ -133,6 +133,15 @@ GET http://localhost:3000/farmer/orders/5f3200783a70aa27529f83fb HTTP/1.1
 Content-Type: application/json
 
 //change status by farmer
+
 ###
-PATCH http://localhost:3000/farmer/orders/pending HTTP/1.1
+PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/pending HTTP/1.1
+Content-Type: application/json
+
+###
+PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/ready HTTP/1.1
+Content-Type: application/json
+
+###
+PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/completed HTTP/1.1
 Content-Type: application/json
