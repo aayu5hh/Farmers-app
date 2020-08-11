@@ -52,7 +52,21 @@ router.post('/farmer/:farmerid/add', (req, res) => {
     }
 });
 
-//localhost:3000/farmer/_productid 
+//To get farmer with farmerid
+//localhost:3000/:farmerid/ 
+router.get('/farmer/:farmerid', (req, res) => {
+
+    User.find({'_id': req.params.farmerid}, (err, doc) => {
+        if (!err) {
+            res.send(doc);
+        } else {
+            console.log('Error in Retriving Products by id: ' + JSON.stringify(err, undefined, 2));
+        }
+    })
+});
+
+//To get all products of farmer with farmerid and productid
+//localhost:3000/:farmerid/_productid 
 router.get('/farmer/:farmerid/:productid', (req, res) => {
 
     User.find({'product._id': req.params.productid}, ['product'], (err, doc) => {
@@ -66,29 +80,24 @@ router.get('/farmer/:farmerid/:productid', (req, res) => {
 
 // localhost:3000/farmer/_id
 router.patch('/farmer/:farmerid/:productid', (req  ,res) => {
-    console.log('inside the post');
     const farmer_id = req.params.farmerid
     const product_id = req.params.productid;
-    const name = 'banana'//req.body.product[0].product_name;
+    const name = req.body.product[0].product_name;
     const description = req.body.product[0].product_description;
     const price = req.body.product[0].price;
     const quantity = req.body.product[0].quantity;
     const image = req.body.product[0].product_image;
-    console.log(req.body)
-    console.log(name)
+    console.log(req.body);
 
     try {
-
-        //     const ProductData = new User({
-        //     name:product_name,
-        //     description:product_description,
-        //     price:price,
-        //     quantity:quantity,
-        //     image:product_image
-        // })
     
         User.findOneAndUpdate({'_id':farmer_id, 'product._id':product_id},
-         {$set:{ 'product.$.product_name': name }},
+         {$set:{ 'product.$.product_name': name,
+                'product.$.product_description': description,
+                'product.$.price': price,
+                'product.$.quantity': quantity,
+                'product.$.product_image': image,
+        }},
             (err, doc) => {
                 if (!err) {
                     res.send(doc);
