@@ -3,7 +3,7 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 
-const User = require('../model/order');
+const User = require('../model/user');
 
 //To fetch all users whose role is farmer
 // localhost:3000/farmer/
