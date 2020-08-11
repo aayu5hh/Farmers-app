@@ -10,9 +10,10 @@ import { from } from 'rxjs';
 import { ProductsComponent } from './products/products.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { FirstMessageComponent } from './first-message/first-message.component';
 
 @NgModule({
-  declarations: [HomeComponent,CheckoutComponent, ProductsComponent, NavbarComponent, FooterComponent],
+  declarations: [HomeComponent,CheckoutComponent, ProductsComponent, NavbarComponent, FooterComponent, FirstMessageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
