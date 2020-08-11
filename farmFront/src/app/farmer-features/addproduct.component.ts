@@ -101,7 +101,6 @@ export class AddproductComponent implements OnDestroy {
     formData.append('quantity', this.myForm.get('quantity').value);
     formData.append('description', this.myForm.get('product_description').value);
           // we will post the data to backend 
-         // const user = this.localService.getUser();
           const helper = new JwtHelperService();
 
           const token = JSON.parse(localStorage.getItem('token'));
