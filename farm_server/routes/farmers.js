@@ -147,16 +147,16 @@ router.get('/farmer/orders/:farmerid', (req, res) => {
     });
 });
 
-//update order status
-router.patch('/farmer/orders/:status', (req, res) => {
+router.patch('/farmer/orders/:orderid/:status', (req, res) => {
+    const order_id = req.params.orderid;
     const status = req.params.status;
     console.log(status);
 
     try {
-        Order.findOneAndUpdate({ 'status': status },
+        Order.findOneAndUpdate({ '_id':order_id },
             {
                 $set: {
-                    'status': "Ready",
+                    'status': status,
                 }
             },
             (err, doc) => {
