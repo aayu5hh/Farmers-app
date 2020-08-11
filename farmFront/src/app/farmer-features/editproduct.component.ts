@@ -22,7 +22,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
     <input
       matInput
       placeholder="Product name "
-      formControlName="name"
+      formControlName="product_name"
     />
   </mat-form-field>
   <mat-form-field class="form-full-width">
@@ -38,7 +38,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   <input
     matInput
     placeholder="description "
-    formControlName="description"    
+    formControlName="product_description"    
   />
 </mat-form-field>
   <mat-form-field class="form-full-width">
@@ -69,10 +69,10 @@ public myForm: FormGroup;
                        console.log(this.product);
 
                 this.myForm = this.formBuilder.group({
-                         name: [this.product.name, Validators.required],
+                         name: [this.product.product_name, Validators.required],
                          quantity: [this.product.quantity, Validators.required],
                          price: [this.product.price, Validators.required],
-                         description: [this.product.description, Validators.required]
+                         description: [this.product.product_description, Validators.required]
                          });  
 }
 
