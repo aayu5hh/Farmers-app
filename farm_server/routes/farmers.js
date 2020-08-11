@@ -8,7 +8,7 @@ const Order = require('../model/order');
 
 //To fetch all users whose role is farmer
 // localhost:3000/farmer/
-router.get('/farmer', (req, res) => {
+router.get('/', (req, res) => {
     User.find({ 'role': 'farmer' }, (err, docs) => {
         if (!err) {
             res.send(docs);

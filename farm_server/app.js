@@ -45,11 +45,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-app.use('/farmer', verifyToken, farmersRouter);
-app.use('/customer', verifyToken, customerRouter);
+// app.use('/farmer', verifyToken, farmersRouter);
+// app.use('/customer', verifyToken, customerRouter);
 
-// app.use('/farmer', farmersRouter);
-// app.use('/customer', customerRouter);
+app.use('/farmer', farmersRouter);
+app.use('/customer', customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
