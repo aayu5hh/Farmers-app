@@ -11,7 +11,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   <ol>
     <li *ngFor="let product of products " >
       <mat-chip-list aria-label="Fish selection">
-      <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/>
+      <img height="100" width="100" src="{{product.product_image}}"  alt="Photo of Product"/>
         <mat-chip> Product: {{ product.product_name }}</mat-chip>
         <mat-chip> Price $: {{product.price }}</mat-chip>
         <mat-chip> Amount In Stock: {{ product.quantity}}</mat-chip>

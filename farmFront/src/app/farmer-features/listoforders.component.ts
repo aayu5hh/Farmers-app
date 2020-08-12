@@ -19,9 +19,9 @@ import { JwtHelperService } from "@auth0/angular-jwt";
         <mat-chip-list aria-label="Fish selection">
           <mat-chip  *ngIf="order.status  == 'Completed'"><p class="done"> Order status: {{ order.status }}</p></mat-chip>
           <mat-chip  *ngIf="order.status !== 'Completed'"><p class="error"> Order status: {{ order.status }}</p></mat-chip>
-          <mat-chip> Order status: {{ order.status }} </mat-chip>
-          <mat-chip> Customer email: {{order.customer._id }}</mat-chip>
-          <mat-chip> Order Placed @ {{ order.pickup_date | date}}</mat-chip>
+          <mat-chip> Order status: {{ orders.status }} </mat-chip>
+          <mat-chip> Customer email: {{orders.customer.id }}</mat-chip>
+          <mat-chip> Order Placed @ {{ orders.pickup_date | date}}</mat-chip>
           <button  *ngIf="order.status   == 'Pending'"    mat-button color='primary' (click)="onOrderReady(order._id, order.userEmail)"> Click to Send Ready notification </button>
           <button  *ngIf="order.status  !== 'Completed'" mat-button color="warn" (click)="onOrderCompleted(order._id)">Click for Order Completed </button>
           </mat-chip-list>
@@ -46,13 +46,22 @@ export class ListofordersComponent implements OnInit {
 
 
 
-onOrderReady(id, email):void{
-     // post 
-}
+//   onOrderReady(id, email):void{
+//     console.log(id,email)
+// this.farmerService.setEmailReciver(email);
+// this.obs$ = this.farmerService.changeOrderStatus(id , {status : 'Ready'}).subscribe( changed =>{
+//      console.log(changed);
+//      this.ngOnInit();
+// })
+// this.router.navigateByUrl('/farmer/sendemail');
+// }
 
-onOrderCompleted(id){
-   // post 
-}
+// onOrderCompleted(id){
+// this.obs$ = this.farmerService.changeOrderStatus(id, {status : 'Completed'}).subscribe( changed =>{
+//  this.router.navigateByUrl('/farmer/orders')
+//  this.ngOnInit();
+// })
+//}
 
   ngOnInit(): void {
   
@@ -62,6 +71,7 @@ onOrderCompleted(id){
     console.log(user.id)
     this.obs$=this.farmerService.getFarmerOrders(user.id).subscribe(data=>{
       this.orders=data;
+      console.log("inside orders")
       console.log(data)
     })
      //this.orders  = [{ total_price: 200, pickup_date : '08/12/2020', status: 'Pending', farmer : {_id :10}, customer :{_id : 12}}]

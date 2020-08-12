@@ -8,9 +8,9 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-addproduct',
   template: `
-  <div class="card text-center">
+  <div class="child text-center">
   <mat-divider></mat-divider><br />
-  <p class="card-title">
+  <p class="parent">
     Add Product
   </p>
   <mat-divider></mat-divider>

@@ -26,6 +26,14 @@ export class FarmersServicesService {
     return this.http.get(`http://localhost:3000/farmer/orders/${farmer_id}`);
   }
 
+  changeOrderStatus(id, {}){
+
+  }
+
+  setEmailReciver(){
+
+  }
+
 
 
  

@@ -8,10 +8,10 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 @Component({
   selector: 'app-editproduct',
   template: `
-  <p  class="card-title text-center">
+  <p  class="parent text-center">
   Please Fill out to edit 
 </p>
-  <div class="card text-center">
+  <div class="child text-center">
   <mat-divider></mat-divider><br /><br />
   
   <mat-divider></mat-divider>
@@ -50,7 +50,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
     />
   </mat-form-field><br>
       
-      <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/><br>
+      <img height="100" width="100" src="{{product.product_image}}"  alt="Photo of Product"/><br>
       <button mat-raised-button color='primary' type="submit" [disabled]="myForm.valid"> Submit Change </button>
     </form>
   </div>

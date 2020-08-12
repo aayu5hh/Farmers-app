@@ -267,7 +267,7 @@ Content-Type: application/json
 
 //by farmer for his all orders by farmers id
 ###
-GET http://localhost:3000/farmer/orders/5f3200783a70aa27529f83fb HTTP/1.1
+GET http://localhost:3000/farmer/orders/5f3400f1edda3c39a5618040 HTTP/1.1
 Content-Type: application/json
 
 //change status by farmer from pending to ready
