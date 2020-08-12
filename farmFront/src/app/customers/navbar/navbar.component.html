@@ -8,15 +8,15 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Products</a>
+                    <a class="nav-link" [routerLink]="['/customers']">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="category.html">My Orders <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" [routerLink]="['/customers/orders']">My Orders <span class="sr-only">(current)</span></a>
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
 
-                <a class="btn btn-success btn-sm ml-3" href="cart.html">
+                <a class="btn btn-success btn-sm ml-3" [routerLink]="['/customers/checkout']">
                     <i class="fa fa-shopping-cart"></i> Cart
                     <span class="badge badge-light">3</span>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
