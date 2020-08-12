@@ -8,7 +8,7 @@ import {
   FormBuilder,
   FormArray
 } from "@angular/forms";
-import { error } from '@angular/compiler/src/util';
+import {AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,32 +19,41 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
+  constructor(
+    private r: Router, private formBuilder: FormBuilder,
+    private reqService: BackendRequestService, private _authService: AuthService) {
+
     this.loginForm = formBuilder.group({
       'email': ['', Validators.required],
-      'password': ['', Validators.compose([Validators.required,Validators.minLength(6)])],
+      'password': ['', Validators.compose([Validators.required])],
     })
    }
 
   ngOnInit(): void {
     console.log('inside login screen');
   }
+  errorMsg;
 
   onSubmit() {
     console.log(this.loginForm.value);
     this.reqService.login(this.loginForm.value).subscribe(
       (resp) => { 
-        console.log(resp);
-        localStorage.setItem('token',resp['token']);
-        //decodeToken
-        //check the role from the decoded token
-        //if role is customer
-        this.r.navigate(['farmers/productlist']);
-        //if role is farmer, navigate to farmer
-      },
-      (err) => console.log(err.error) )
-  }
+        // console.log(resp);
 
+        localStorage.setItem('token',resp['token']);
+
+        const decodedToken = this._authService.getDecodedAccessToken(resp['token']);
+
+        if(decodedToken.role == "customer") {
+          this.r.navigate(['customers']);
+        } else {
+          this.r.navigate(['farmers']);
+        }
+        
+        
+      },
+      (err) => this.errorMsg=err.error )
+  }
   goToSignUp(){
     this.r.navigate(['signup']);
   }

@@ -8,6 +8,7 @@ import {
   FormBuilder,
   FormArray
 } from "@angular/forms";
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-signup',
@@ -17,16 +18,26 @@ import {
 export class SignupComponent implements OnInit{
 
   signupForm: FormGroup;
-  email;      /**  This's simon modification !! */
+  showMsg;
+  errMsg;
+  respMsg;
+
+  // public emails=[];
+
   roles = ['Customer', 'Farmer'];
+  
   
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
 
+    
     this.signupForm = formBuilder.group({
       'first_name': ["", [Validators.required]],
-      'last_name': [""],
-      'email': ["", [Validators.required, Validators.email]],
+      'last_name': ["",[Validators.required]],
+      'email': ["",Validators.compose([Validators.required, Validators.email,
+        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"),
+        this.uniqueEmailValidator
+      ]) ],
       'password': ["", [Validators.required]],
       'address':["",[Validators.required]],
       'role': ['Customer']
@@ -37,15 +48,48 @@ export class SignupComponent implements OnInit{
   ngOnInit(){
     console.log('inside signup Component');
   }
+
   onSubmit() {
-    console.log(this.signupForm.value);
-    this.reqService.signUp(this.signupForm.value).subscribe(resp => {
-      console.log(resp);
-    })
+    console.log(this.signupForm.value);   
+    this.reqService.signUp(this.signupForm.value).subscribe(
+      (resp) => {
+        console.log(resp);
+        if(resp['message']['errors']) {
+          this.errMsg= resp['message']['_message'];
+          this.respMsg= undefined;
+        } else {
+    
+          this.respMsg= resp['message'];
+          this.errMsg = undefined;
+
+        }
+      }
+      
+    )
+    this.signupForm.reset();
+
   }
 
   goToLogin() {
     this.r.navigate(['login']);
   }
+  
+
+  // need to modify
+
+  uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
+    const email=control.get('email').value;
+   const unique=this.reqService.isEmailUnique(email);
+    if(!unique){   
+     
+        return {email:true};
+      }
+      return null;
+    }
+   
+
+
+
+
 
 }

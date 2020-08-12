@@ -2,13 +2,14 @@ require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
 
 const User = require('../model/user');
 const Order = require('../model/order');
 
 //To fetch all users whose role is farmer
 // localhost:3000/customer/
-router.get('/customer', (req, res) => {
+router.get('/', (req, res) => {
     User.find({ 'role': 'customer' }, (err, docs) => {
         if (!err) {
             res.send(docs);
@@ -19,7 +20,7 @@ router.get('/customer', (req, res) => {
 });
 
 //customer to get all products by farmer_id and it will return all products with farmerid
-router.get('/customer/:farmerid', (req, res) => {
+router.get('/:farmerid', (req, res) => {
     const farmer_id = req.params.farmerid;
     User.find({ '_id': farmer_id }, ['product'], (err, docs) => {
         if (!err) {
@@ -31,13 +32,17 @@ router.get('/customer/:farmerid', (req, res) => {
 });
 
 //customer add to orders to orders collection
-router.post('/customer/orders', async (req, res) => {
+router.post('/orders', async (req, res) => {
     const order_items = req.body.order_items;
     const total_price = req.body.total_price;
     const status = req.body.status;
     const pickup_date = req.body.pickup_date;
     const farmer = req.body.farmer;
     const customer = req.body.customer;
+    const farmerEmail = req.body.farmer.email;
+    const customerEmail = req.body.customer.email;
+    // console.log(farmerEmail);
+    // console.log(customerEmail);
     try {
         const newOrder = {
             order_items: order_items,
@@ -51,8 +56,46 @@ router.post('/customer/orders', async (req, res) => {
         const order = new Order(newOrder);
 
         await order.save();
-        console.log(newOrder);
+        // console.log(newOrder);
         res.json({ message: 'Orders are done successfully' });
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'navinhelpdesk@gmail.com',
+              pass: 'na252pa14'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'navinhelpdesk@gmail.com',
+            to: customerEmail,
+            subject: 'Order is placed!',
+            text: 'Thank you, for your order! We will send you mail once it is ready.'
+          };
+
+          var mailOptions1 = {
+            from: 'navinhelpdesk@gmail.com',
+            to: farmerEmail,
+            subject: 'order for you!',
+            text: 'order has been done by a customer. His email id is '+customerEmail
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
+          transporter.sendMail(mailOptions1, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
 
     } catch (e) {
 
@@ -62,14 +105,16 @@ router.post('/customer/orders', async (req, res) => {
 });
 
 //get orders by customer id
-router.get('/customer/orders/:customerid', (req, res) => {
-    const customer_id = (req.params.customerid).toString();
-    User.find({ 'customer.id': customer_id }, (err, docs) => {
+router.get('/orders/:customerid', (req, res) => {
+    const customer_id = req.params.customerid;
+    console.log(customer_id);
+    Order.find({ 'customer.id': customer_id }, (err, docs) => {
         if (!err) {
             res.send(docs);
         } else {
-            console.log('Error in Retriving all Products: ' + JSON.stringify(err, undefined, 2));
+            console.log('Error in Retriving all customer orders: ' + JSON.stringify(err, undefined, 2));
         }
     });
 });
+
 module.exports = router;

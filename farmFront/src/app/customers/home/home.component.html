@@ -30,7 +30,7 @@
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Select Farmers </div>
                 <ul class="list-group category_block">
                     <div *ngFor="let f of allFarmers">
-                        <li class="list-group-item"><a [routerLink] = "['f._id']">{{f.first_name}}</a></li>
+                        <li class="list-group-item"><a [routerLink] = "[f._id]">{{f.first_name}}</a></li>
                     </div>
                 </ul>
             </div>
@@ -45,8 +45,8 @@
             </div>
         </div>
         <div class="col">
-            
-            <app-products></app-products>
+            <router-outlet></router-outlet>
+            <!-- <app-products></app-products> -->
             <!-- <app-first-message></app-first-message> -->
             
         </div>

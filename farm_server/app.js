@@ -7,23 +7,47 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 const cors = require('cors');
+var verifyToken = require('./middlewares/verifyToken');
 
 var usersRouter = require('./routes/users');
 var farmersRouter = require('./routes/farmers');
 var customerRouter = require('./routes/customer');
 
-mongoose.connect('mongodb+srv://user:123@mwaprojectcluster.16aa0.mongodb.net/FarmersDb?retryWrites=true&w=majority', (err)=>{
-  if(!err)
-    console.log('MongoDb connection succeeded...');
-  else
-  console.log('Error in DB connection: '+JSON.stringify(err, undefined, 2));
-});
+const port = process.env.PORT || 3000;
 
 var app = express();
 
+//Swagger
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
-app.listen(3000, ()=> console.log('Server started at port: 3000'))
+// Extended: https://swagger.io/specification/#infoObject
 
+// swagger definition
+const swaggerOption ={
+  swaggerDefinition: {
+    info: {
+      version: "1.0.0",
+      title: "Farmer API",
+      description: "Farmer API Information",
+      contact: {
+        name: "Ayush-Deepak-Navin-Simon Developer"
+      },
+      servers: ['http://localhost:3000'],
+    }
+  },
+  apis: ['./routes/*.js']
+};
+
+// initialize swagger-jsdoc
+const swaggerDocs = swaggerJsDoc(swaggerOption);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// serve swagger
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,8 +68,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-app.use('/', farmersRouter);
-app.use('/', customerRouter);
+// app.use('/farmer', verifyToken, farmersRouter);
+// app.use('/customer', verifyToken, customerRouter);
+
+app.use('/farmer', farmersRouter);
+app.use('/customer', customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,6 +85,10 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
 
 module.exports = app;
