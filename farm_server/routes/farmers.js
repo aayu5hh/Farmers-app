@@ -145,7 +145,7 @@ router.patch('/:farmerid/:productid', (req, res) => {
                     'product.$.product_description': description,
                     'product.$.price': price,
                     'product.$.quantity': quantity,
-                    'product.$.product_image': image,
+                    // 'product.$.product_image': image,
                 }
             },
             (err, doc) => {
