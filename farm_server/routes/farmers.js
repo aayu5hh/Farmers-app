@@ -183,18 +183,18 @@ router.delete('/:farmerid/:productid', (req, res) => {
 });
 
 //get orders by farmer_id
-router.get('/orders/:farmerid', (req, res) => {
-    console.log('inside farmer orders');
-    const farmer_id = req.params.farmerid;
-    console.log(farmer_id);
-    Order.find({ 'farmer.id': farmer_id }, (err, docs) => {
-        if (!err) {
-            res.send(docs);
-        } else {
-            console.log('Error in Retriving all farmers orders: ' + JSON.stringify(err, undefined, 2));
-        }
-    });
-});
+// router.get('/myorders/:farmer_id', async (req, res) => {
+//     console.log('inside farmer orders');
+//     const farmer_id = req.params.farmer_id;
+//     console.log(farmer_id);
+//     Order.find({ 'farmer.id': farmer_id }, (err, docs) => {
+//         if (!err) {
+//             res.send(docs);
+//         } else {
+//             console.log('Error in Retriving all farmers orders: ' + JSON.stringify(err, undefined, 2));
+//         }
+//     });
+// });
 
 router.patch('/orders/:orderid/:status', (req, res) => {
     const order_id = req.params.orderid;
