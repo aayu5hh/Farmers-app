@@ -279,3 +279,8 @@ Content-Type: application/json
 ###
 PATCH http://localhost:3000/farmer/orders/5f32be13c71f854cbe9f7209/completed HTTP/1.1
 Content-Type: application/json
+
+//To fetch all users whose role is farmer
+###
+GET http://localhost:3000/user/customer1@gmail.com HTTP/1.1
+Content-Type: application/json

@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 //localhost:3000/:farmerid/ 
 /**
  * @swagger
- * /farmer/5f3200783a70aa27529f83fb:
+ * /farmer/5f338c0cbf1676d0edfa3133:
  *   get:
  *     tags:
  *       - Farmers with farmer id
@@ -76,7 +76,7 @@ router.get('/:farmerid/:productid', (req, res) => {
 // localhost:3000/farmer/_farmerid/add
 /**
  * @swagger
- * /farmer/5f3200783a70aa27529f83fb/add:
+ * /farmer/5f338c0cbf1676d0edfa3133/add:
  *   post:
  *     tags:
  *       - To add products of farmer with farmer id
