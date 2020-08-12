@@ -13,11 +13,45 @@ var usersRouter = require('./routes/users');
 var farmersRouter = require('./routes/farmers');
 var customerRouter = require('./routes/customer');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
+//Swagger
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
-// app.listen(3000, ()=> console.log('Server started at port: 3000'))
+// Extended: https://swagger.io/specification/#infoObject
 
+// swagger definition
+const swaggerOption ={
+  swaggerDefinition: {
+    info: {
+      version: "1.0.0",
+      title: "Farmer API",
+      description: "Farmer API Information",
+      contact: {
+        name: "Ayush-Deepak-Navin-Simon Developer"
+      },
+      servers: ['http://localhost:3000'],
+    }
+  },
+  apis: ['./routes/*.js']
+};
+
+// initialize swagger-jsdoc
+const swaggerDocs = swaggerJsDoc(swaggerOption);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+// serve swagger
+app.get('/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,5 +90,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
 });
+
+
 
 module.exports = app;

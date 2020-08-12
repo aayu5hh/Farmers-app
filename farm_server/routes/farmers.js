@@ -5,10 +5,25 @@ var router = express.Router();
 
 const User = require('../model/user');
 const Order = require('../model/order');
-var nodemailer = require('nodemailer');
+// var nodemailer = require('nodemailer')
 
+ 
 //To fetch all users whose role is farmer
-// localhost:3000/farmer/
+// // localhost:3000/farmer/
+
+/**
+ * @swagger
+ * /farmer:
+ *   get:
+ *     tags:
+ *       - Farmers
+ *     description: Returns all farmers
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of farmers
+ */
 router.get('/', (req, res) => {
     User.find({ 'role': 'farmer' }, (err, docs) => {
         if (!err) {
@@ -19,8 +34,21 @@ router.get('/', (req, res) => {
     });
 });
 
-//To get farmer with farmerid
+//To get farmer with farmerid and his details
 //localhost:3000/:farmerid/ 
+/**
+ * @swagger
+ * /farmer/5f3200783a70aa27529f83fb:
+ *   get:
+ *     tags:
+ *       - Farmers with farmer id
+ *     description: Returns single farmer
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: A single farmer
+ */
 router.get('/:farmerid', (req, res) => {
     User.find({ '_id': req.params.farmerid }, (err, doc) => {
         if (!err) {
@@ -31,10 +59,25 @@ router.get('/:farmerid', (req, res) => {
     })
 });
 
-//To get all products of farmer with farmerid and productid
+//To get all products of farmer with farmerid and farmer details
 //localhost:3000/:farmerid/_productid 
-router.get('/products/:farmerid', (req, res) => {
-    User.find({ '_id': farmer_id}, ['product'], (err, doc) => {
+/**
+ * @swagger
+ * /farmer/5f3200783a70aa27529f83fb/5f320ebaec5d1547479f0811:
+ *   get:
+ *     tags:
+ *       - To get all products of farmer with farmer id and product id
+ *     description: Returns single farmer
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of products with farmer id
+ */
+router.get('/:farmerid/:productid', (req, res) => {
+    const farmer_id = req.params.farmerid;
+    const product_id = req.params.productid;
+    User.find({ '_id': farmer_id, 'product._id':product_id }, ['product'], (err, doc) => {
         if (!err) {
             res.send(doc);
         } else {
@@ -44,6 +87,24 @@ router.get('/products/:farmerid', (req, res) => {
 });
 
 // localhost:3000/farmer/_farmerid/add
+/**
+ * @swagger
+ * /farmer/5f3200783a70aa27529f83fb/add:
+ *   post:
+ *     tags:
+ *       - To add products of farmer with farmer id
+ *     description: Returns single farmer
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Farmer Products
+ *         description: Products object
+ *         in: body
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: An array of products are added with farmer id
+ */
 router.post('/:farmerid/add', (req, res) => {
 
     const farmer_id = req.params.farmerid;
@@ -154,7 +215,7 @@ router.patch('/orders/:orderid/:status', (req, res) => {
     // console.log(status);
 
     try {
-        Order.findOneAndUpdate({ '_id':order_id },
+        Order.findOneAndUpdate({ '_id': order_id },
             {
                 $set: {
                     'status': status,
