@@ -13,7 +13,11 @@ import { FooterComponent } from './footer/footer.component';
 import { FirstMessageComponent } from './first-message/first-message.component';
 
 @NgModule({
-  declarations: [HomeComponent,CheckoutComponent, ProductsComponent, NavbarComponent, FooterComponent, FirstMessageComponent],
+  declarations: [
+    HomeComponent,CheckoutComponent,
+    ProductsComponent, NavbarComponent,
+    FooterComponent, FirstMessageComponent,
+    CustomerOrdersComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
