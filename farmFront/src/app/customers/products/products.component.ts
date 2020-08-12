@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  host: {class: 'row'}
+  host: { class: 'row' }
 })
 export class ProductsComponent implements OnInit {
 
@@ -18,11 +18,12 @@ export class ProductsComponent implements OnInit {
 
   constructor(private backendService: BackendRequestService, private r: Router, private activatedRoute: ActivatedRoute) {
     this.subscription = activatedRoute.params.subscribe(
-                          (param: any) => {this.farmer_id = param['farmer_id'];
-                                           console.log(this.farmer_id);
-                                           this.ngOnInit();
-                                          }
-                        )
+      (param: any) => {
+        this.farmer_id = param['farmer_id'];
+        console.log(this.farmer_id);
+        this.ngOnInit();
+      }
+    )
   }
 
   ngOnInit(): void {

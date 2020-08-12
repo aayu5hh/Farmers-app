@@ -9,7 +9,7 @@ import { BackendRequestService } from '../../service/backendRequest.service';
 })
 export class CustomerOrdersComponent implements OnInit {
 
-  items=[{"name":"Potato","quantity":2,"price":5},
+  items = [{"name":"Potato","quantity":2,"price":5},
   {"name":"Tomato","quantity":3,"price":10},
   {"name":"carrot","quantity":5,"price":15}];
 
