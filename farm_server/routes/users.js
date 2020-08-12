@@ -74,4 +74,20 @@ router.get('/userdata', verifyToken, async (req, res) => {
     return res.status(200).json(req.body.tokenData);
 })
 
+router.get('/user/:email', (req, res) => {
+    User.findOne({ 'email': req.params.email}, (err, doc) => {
+        if (!err) {
+            if (doc) {
+                var message = 'A user with that email has already registered. Please use a different email';
+               res.send(message);
+          } else {
+              res.send(doc);
+          }
+        } else {
+            console.log('Error in checking email in database: ' + JSON.stringify(err, undefined, 2));
+        }
+    })
+});
+
+
 module.exports = router;
