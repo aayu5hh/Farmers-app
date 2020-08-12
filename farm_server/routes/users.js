@@ -74,7 +74,7 @@ router.get('/userdata', verifyToken, async (req, res) => {
     return res.status(200).json(req.body.tokenData);
 })
 
-router.get('/user/{email}', (req, res) => {
+router.get('/user/:email', (req, res) => {
     User.findOne({ 'email': req.params.email}, (err, doc) => {
         if (!err) {
             if (doc) {

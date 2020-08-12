@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit{
       'last_name': ["",[Validators.required]],
       'email': ["",Validators.compose([Validators.required, Validators.email,
         Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"),
-        this.uniqueEmailValidator
+        // this.uniqueEmailValidator
       ]) ],
       'password': ["", [Validators.required]],
       'address':["",[Validators.required]],
@@ -77,15 +77,15 @@ export class SignupComponent implements OnInit{
 
   // need to modify
 
-  uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
-    const email=control.get('email').value;
-   const unique=this.reqService.isEmailUnique(email);
-    if(!unique){   
+  // uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
+  //   const email=control.get('email').value;
+  //  const unique=this.reqService.isEmailUnique(email);
+  //   if(!unique){   
      
-        return {email:true};
-      }
-      return null;
-    }
+  //       return {email:true};
+  //     }
+  //     return null;
+  //   }
    
 
 
