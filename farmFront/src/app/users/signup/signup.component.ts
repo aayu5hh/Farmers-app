@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit{
       'last_name': ["",[Validators.required]],
       'email': ["",Validators.compose([Validators.required, Validators.email,
         Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"),
-        // this.uniqueEmailValidator
+        this.uniqueEmailValidator
       ]) ],
       'password': ["", [Validators.required]],
       'address':["",[Validators.required]],
@@ -50,13 +50,7 @@ export class SignupComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
-
-    // emails=this.reqService.getAllEmails()
-      // .subscribe(data=>this.emails=data); // fetch from api
-    
-    // const email={"email":"this.signupForm.get('email').value"};
-    // console.info({"email":this.signupForm.get('email').value});
+    console.log(this.signupForm.value);   
     this.reqService.signUp(this.signupForm.value).subscribe(
       (resp) => {
         console.log(resp);
@@ -81,17 +75,19 @@ export class SignupComponent implements OnInit{
   }
   
 
-  // uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
-  //   const email=control.get('email').value;
-  //   if(control.get('email').valid){
-  //     // const isUnique=this.reqService.emails.(farmer=>farmer.email).some(value=>value===email);
-  //     if(isUnique){
-  //       return {email:true};
-  //     }
-  //     return null;
-  //   }
+  // need to modify
+
+  uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
+    const email=control.get('email').value;
+   const unique=this.reqService.isEmailUnique(email);
+    if(!unique){   
+     
+        return {email:true};
+      }
+      return null;
+    }
    
-  // }
+
 
 
 
