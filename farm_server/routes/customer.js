@@ -117,4 +117,17 @@ router.get('/orders/:customerid', (req, res) => {
     });
 });
 
+router.get('/farmer/:farmer_id', async (req, res) => {
+  console.log('inside farmer orders');
+  const farmer_id = req.params.farmer_id;
+  console.log(farmer_id);
+  Order.find({ 'farmer.id': farmer_id }, (err, docs) => {
+      if (!err) {
+          res.send(docs);
+      } else {
+          console.log('Error in Retriving all farmers orders: ' + JSON.stringify(err, undefined, 2));
+      }
+  });
+});
+
 module.exports = router;
