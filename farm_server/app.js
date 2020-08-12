@@ -55,8 +55,6 @@ app.set('view engine', 'jade');
 
 mongoose.connect(process.env.MONGO_URL);
 
-
-
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -85,10 +83,6 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-});
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
 });
 
 module.exports = app;
