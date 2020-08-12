@@ -31,6 +31,6 @@ export class BackendRequestService {
     return this.http.get(this.baseUrl + `customer/${id}`);
   }
   isEmailUnique(email){
-    return this.http.get(this.baseUrl+`user/:email`);
+    return this.http.get(this.baseUrl+`user/${email}`);
   }
 }
