@@ -10,32 +10,36 @@ Content-Type: application/json
 //============== Signup For farmer ===================================
 
 ###
-//user farmer signup1 with product details
+//user farmer signup without product details
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/json
 
-{"first_name":"Ayush1", "last_name": "Bh1", "email": "ayush2@gmail.com", "password":"abc123", 
-"role": "farmer", "address":"Ottumuwa","product":[{"product_name":"Apple", 
-"product_description":"Red apple from Humla","price":"$1.5", "quantity":1, 
-"product_image":"https://picsum.photos/200/300"}]}
-
-###
-//user farmer signup2 with product details
-POST http://localhost:3000/signup HTTP/1.1
-Content-Type: application/json
-
-{"first_name":"Ayush4", "last_name": "Bh4", "email": "ayush4@gmail.com", "password":"abc123", 
-"role": "farmer", "address":"Ottumuwa","product":[{"product_name":"Apple", 
-"product_description":"Red apple from Humla","price":"$1.5", "quantity":1, 
-"product_image":"https://picsum.photos/200/300"}]}
+{"first_name":"farmer1", "last_name": "farm1", "email": "farmer1@gmail.com", "password":"abc123", 
+"role": "farmer", "address":"Ottumuwa"}
 
 ###
 //user farmer signup without product details
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/json
 
-{"first_name":"Ayush2", "last_name": "Bh2", "email": "ayush3@gmail.com", "password":"abc123", 
-"role": "farmer", "address":"Ottumuwa"}
+{"first_name":"farmer2", "last_name": "farm2", "email": "farmer2@gmail.com", "password":"abc123", 
+"role": "farmer", "address":"Fairfield"}
+
+###
+//user farmer signup without product details
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{"first_name":"farmer3", "last_name": "farm3", "email": "farmer3@gmail.com", "password":"abc123", 
+"role": "farmer", "address":"New York"}
+
+###
+//user farmer signup without product details
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{"first_name":"farmer4", "last_name": "farm4", "email": "farmer4@gmail.com", "password":"abc123", 
+"role": "farmer", "address":"Salt Lake"}
 
 //=================== For farmer ===============================
 //To fetch all users whose role is farmer
@@ -54,13 +58,125 @@ GET http://localhost:3000/farmer/5f3200783a70aa27529f83fb/5f320ebaec5d1547479f08
 Content-Type: application/json
 
 ###
-//add farmer products
-POST http://localhost:3000/farmer/5f3200783a70aa27529f83fb/add HTTP/1.1
+//1. add farmer products
+POST http://localhost:3000/farmer/5f338c0cbf1676d0edfa3133/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Apple", 
+"product_description":"True to its name, the honeycrisp is sweet and crunchy with a warm, yellow interior and an attractive yellow-red streaked skin. We love this healthy treat packed in a lunch, sliced for after-school snacks or as a take-along for your anytime snacking.",
+"price":"$1.25", 
+"quantity":50, 
+"product_image":"https://images.freeimages.com/images/large-previews/0a7/apples-1329832.jpg"}]}
+
+###
+//2. add farmer products
+POST http://localhost:3000/farmer/5f338c0cbf1676d0edfa3133/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Orange", 
+"product_description":"They might look like regular navel oranges from the outside, but the Cara Cara's pulp is the color of pink grapefruit. In addition, the flavor is sweeter and lower in acid than the navels you know. Already beloved in California, the Cara Cara is just beginning to catch on along the East Coast. After tasting this fruit, one of our research chefs jumped up and screamed, 'This is the best orange ever!'",
+"price":"$1.67", "quantity":67, 
+"product_image":"https://images.freeimages.com/images/large-previews/da1/orange-1176187.jpg"}]}
+
+###
+//3. add farmer products
+POST http://localhost:3000/farmer/5f338c0cbf1676d0edfa3133/add HTTP/1.1
 Content-Type: application/json
 
 {"product":[{"product_name":"Pineapple", 
-"product_description":"It is from Butwal","price":"$1.25", "quantity":5, 
-"product_image":"https://picsum.photos/200/300"}]}
+"product_description":"The Golden is a pineapple that's been to charm school. The tartness has been reined in just a bit. It is sweeter and mellower than other pineapples. The Golden is a good mixer in yogurt or fruit salad and a surefire hit with kids.",
+"price":"$2.42", "quantity":88, 
+"product_image":"https://images.freeimages.com/images/large-previews/165/pineapples-1325441.jpg"}]}
+
+###
+//4. add farmer products
+POST http://localhost:3000/farmer/5f338c10bf1676d0edfa3134/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Papaya", 
+"product_description":"With a melon-like flavor, fragrant aroma and beautiful salmon red interior, red papayas may resemble a strawberry papaya, but they are much sweeter. Red papaya adds color and taste to any salad or can be served chilled topped with a dollop of vanilla ice cream for a tasty tropical sundae!",
+"price":"$1.98", "quantity":44, 
+"product_image":"https://images.freeimages.com/images/large-previews/6b9/fruits-1320222.jpg"}]}
+
+###
+//5. add farmer products
+POST http://localhost:3000/farmer/5f338c10bf1676d0edfa3134/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Potato", 
+"product_description":"These tiny 'taters are essentially just the baby versions of their larger brothers, but youth gives them thin, tasty skins and moist, creamy flesh (thus, the name 'creamer'). We find they're particularly good when steamed (they make fantastic skin-on potato salads) or roasted.",
+"price":"$2.27", "quantity":200, 
+"product_image":"https://images.freeimages.com/images/large-previews/9b3/potatoes-1325508.jpg"}]}
+
+###
+//6. add farmer products
+POST http://localhost:3000/farmer/5f338c10bf1676d0edfa3134/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Tomato", 
+"product_description":"Also known as Romas or Italians, these slightly tangy, deeply sweet tomatoes are ideal for sauce. They are fleshy and thin-skinned and have few seeds. Slow cooking brings out their full rich essence. We add fresh basil to the sauce five minutes before serving. In salads and sandwiches they are good pinch hitters for beefsteak tomatoes.",
+"price":"$2.64", "quantity":220, 
+"product_image":"https://images.freeimages.com/images/large-previews/f65/tomatoes-1324786.jpg"}]}
+
+###
+//7. add farmer products
+POST http://localhost:3000/farmer/5f338c16bf1676d0edfa3135/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Jalapeno Pepper", 
+"product_description":"When we hear the words 'hot pepper,' the tingle most of us remember is probably from those jalapeño rings that come with a plate of nachos. Small and torpedo-shaped, jalapeños may be pale green, blackish green, or red. As with all chiles, the riper and redder, the sweeter. When smoked and dried, the jalapeño is known as chipotle.",
+"price":"$0.56", "quantity":2200, 
+"product_image":"https://images.freeimages.com/images/large-previews/dc7/chili-peppers-1329720.jpg"}]}
+
+###
+//8. add farmer products
+POST http://localhost:3000/farmer/5f338c16bf1676d0edfa3135/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Grapes", 
+"product_description":"Very sweet and elegant-looking. These fun-to-eat grapes burst in the mouth, just like the champagne bubbles they're named for. Their delicate aroma is flowery and clean. Their delicious taste and decorative good looks go well with cheese and pâté.",
+"price":"$3.26", "quantity":3500, 
+"product_image":"https://images.freeimages.com/images/large-previews/c0f/grapes-1326895.jpg"}]}
+
+###
+//9. add farmer products
+POST http://localhost:3000/farmer/5f338c16bf1676d0edfa3135/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Mango", 
+"product_description":"The tropical flavor of the mango has universal appeal. The meat has the sweetness of a peach, the color of an apricot, and just enough fiber to give it some chewiness. We've eliminated the messy step of removing the mango's delectable meat from its large pit. Cubed and ready to go — try these golden nuggets in salsas, salads, and chutneys.",
+"price":"$1.02", "quantity":500, 
+"product_image":"https://images.freeimages.com/images/large-previews/c6b/mangoes-1324198.jpg"}]}
+
+###
+//10. add farmer products
+POST http://localhost:3000/farmer/5f338c1dbf1676d0edfa3136/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Cucumber", 
+"product_description":"A slightly smaller version of the slender Persian, these mini seedless cucumbers are juicy and sweet. Plus, with tiny vestigial seeds (which are very easy to digest), these are the perfect fix to toss into chopped salads, soups and tea sandwiches.",
+"price":"$1.76", "quantity":450, 
+"product_image":"https://images.freeimages.com/images/large-previews/ea0/gherkins-1322837.jpg"}]}
+
+###
+//11. add farmer products
+POST http://localhost:3000/farmer/5f338c1dbf1676d0edfa3136/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Mushroom", 
+"product_description":"There's a lot to be said for the humble button mushroom. Sure, there are lots of alternatives with exotic looks and funny names, but white buttons are a kitchen staple. They add texture and mild earthy flavor, but almost no calories. They're inexpensive, always available, easy to prepare, and keep well in the refrigerator. Mix them with the exotics or let them stand on their own. They'll never disappoint.",
+"price":"$4.26", "quantity":352, 
+"product_image":"https://images.freeimages.com/images/large-previews/486/mushrooms-1555323.jpg"}]}
+
+###
+//12. add farmer products
+POST http://localhost:3000/farmer/5f338c1dbf1676d0edfa3136/add HTTP/1.1
+Content-Type: application/json
+
+{"product":[{"product_name":"Avocado", 
+"product_description":"These gorgeous Hass avocados are shipped to you ready to eat! Don't delay in enjoying the buttery texture and rich, slightly sweet flavor. We love to plump up burritos, sandwiches and salads with these 'butter pears,' but they also make a satisfying addition to health smoothies to start your day off right.",
+"price":"$5.28", "quantity":152, 
+"product_image":"https://images.freeimages.com/images/large-previews/514/avocado-on-white-1057415.jpg"}]}
 
 ###
 //update farmer product by id
@@ -83,8 +199,32 @@ Content-Type: application/json
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/json
 
-{"first_name":"Ayush", "last_name": "Bh", "email": "ayush@gmail.com", "password":"abc123", 
-"role":"customer", "address":"Fairfield", "reputation":4}
+{"first_name":"Customer1", "last_name": "Cust1", "email": "customer1@gmail.com", "password":"abc123", 
+"role":"customer", "address":"Fairfield"}
+
+###
+//user signup for customer
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{"first_name":"Customer2", "last_name": "Cust2", "email": "customer2@gmail.com", "password":"abc123", 
+"role":"customer", "address":"Fairfield"}
+
+###
+//user signup for customer
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{"first_name":"Customer3", "last_name": "Cust3", "email": "customer3@gmail.com", "password":"abc123", 
+"role":"customer", "address":"Fairfield"}
+
+###
+//user signup for customer
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/json
+
+{"first_name":"Customer4", "last_name": "Cust4", "email": "customer4@gmail.com", "password":"abc123", 
+"role":"customer", "address":"Fairfield"}
 
 //=================== For Customer ===============================================
 //To fetch all users whose role is customer

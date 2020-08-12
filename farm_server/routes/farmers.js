@@ -61,19 +61,6 @@ router.get('/:farmerid', (req, res) => {
 
 //To get all products of farmer with farmerid and farmer details
 //localhost:3000/:farmerid/_productid 
-/**
- * @swagger
- * /farmer/5f3200783a70aa27529f83fb/5f320ebaec5d1547479f0811:
- *   get:
- *     tags:
- *       - To get all products of farmer with farmer id and product id
- *     description: Returns single farmer
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: An array of products with farmer id
- */
 router.get('/:farmerid/:productid', (req, res) => {
     const farmer_id = req.params.farmerid;
     const product_id = req.params.productid;
@@ -106,7 +93,7 @@ router.get('/:farmerid/:productid', (req, res) => {
  *         description: An array of products are added with farmer id
  */
 router.post('/:farmerid/add', (req, res) => {
-
+    console.log('inside');
     const farmer_id = req.params.farmerid;
     const { product_name, product_description, price, quantity, product_image } = req.body.product[0]
     console.log(req.body)
