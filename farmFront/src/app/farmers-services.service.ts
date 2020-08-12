@@ -23,7 +23,7 @@ export class FarmersServicesService {
   }
 
   getFarmerOrders(farmer_id){
-    return this.http.get(`http://localhost:3000/farmer/orders/${farmer_id}`);
+    return this.http.get(`http://localhost:3000/customer/farmer/${farmer_id}`);
   }
 
   changeOrderStatus(id, {}){

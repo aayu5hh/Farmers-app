@@ -8,19 +8,19 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 @Component({
   selector: 'app-listoforders',
   template: `
-  <div class="card-title">
+  <div class="parent">
   <mat-divider></mat-divider><br>
   <div>
 
   </div>
-    <p class='card-title'> <b> Your Order List </b> </p>
+    <p class='parent'> <b> Your Order List </b> </p>
     <ol>
       <li *ngFor="let order of orders ">
         <mat-chip-list aria-label="Fish selection">
           <mat-chip  *ngIf="order.status  == 'Completed'"><p class="done"> Order status: {{ order.status }}</p></mat-chip>
           <mat-chip  *ngIf="order.status !== 'Completed'"><p class="error"> Order status: {{ order.status }}</p></mat-chip>
-          <mat-chip> Order status: {{ orders.status }} </mat-chip>
-          <mat-chip> Customer email: {{orders.customer.id }}</mat-chip>
+          <mat-chip> Order status: {{ order.status }} </mat-chip>
+          <mat-chip> Customer email: {{order.customer.id }}</mat-chip>
           <mat-chip> Order Placed @ {{ orders.pickup_date | date}}</mat-chip>
           <button  *ngIf="order.status   == 'Pending'"    mat-button color='primary' (click)="onOrderReady(order._id, order.userEmail)"> Click to Send Ready notification </button>
           <button  *ngIf="order.status  !== 'Completed'" mat-button color="warn" (click)="onOrderCompleted(order._id)">Click for Order Completed </button>
@@ -38,6 +38,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class ListofordersComponent implements OnInit {
 
   public user;
+  public customer;
   public orders;
   public obs$;
   constructor( private router: Router, private farmerService:FarmersServicesService) {}
