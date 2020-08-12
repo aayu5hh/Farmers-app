@@ -8,7 +8,7 @@ import {
   FormBuilder,
   FormArray
 } from "@angular/forms";
-import { error } from '@angular/compiler/src/util';
+import {AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
+  constructor(
+    private r: Router, private formBuilder: FormBuilder,
+    private reqService: BackendRequestService, private _authService: AuthService) {
+
     this.loginForm = formBuilder.group({
       'email': ['', Validators.required],
       'password': ['', Validators.compose([Validators.required])],
@@ -35,10 +38,18 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.reqService.login(this.loginForm.value).subscribe(
       (resp) => { 
-        console.log(resp);
+        // console.log(resp);
+
         localStorage.setItem('token',resp['token']);
 
-        this.r.navigate(['customers']);
+        const decodedToken = this._authService.getDecodedAccessToken(resp['token']);
+
+        if(decodedToken.role == "customer") {
+          this.r.navigate(['customers']);
+        } else {
+          this.r.navigate(['farmers']);
+        }
+        
         
       },
       (err) => this.errorMsg=err.error )

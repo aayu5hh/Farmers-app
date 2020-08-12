@@ -13,5 +13,8 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  continue() {
+    this.r.navigate(['/customers']);
+  }
 
 }

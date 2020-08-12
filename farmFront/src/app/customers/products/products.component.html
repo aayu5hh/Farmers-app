@@ -2,7 +2,7 @@
 <!-- <div > -->
     <div class="col-12 col-md-6 col-lg-4" *ngFor='let product of farmerProducts'>
         <div class="card">
-            <img class="card-img-top" src="https://idsb.tmgrup.com.tr/ly/uploads/images/2020/05/13/thumbs/800x531/35552.jpg" alt="Card image cap">
+            <img class="card-img-top" src="{{product.product_image}}" alt="Card image cap">
             <div class="card-body">
                 <h4 class="card-title"><a  title="View Product"><strong>{{product.product_name}}</strong></a></h4>
                 <p class="card-text">{{product.product_description}}</p>
