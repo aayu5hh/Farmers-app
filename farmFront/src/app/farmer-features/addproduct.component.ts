@@ -1,13 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+
 @Component({
   selector: 'app-addproduct',
   template: `
-  <div class="card text-center">
+  <div class="child text-center">
   <mat-divider></mat-divider><br />
+  <p class="parent">
+    Add Product
+  </p>
   <mat-divider></mat-divider>
+  <div>
   <div>
     <form [formGroup]="myForm" (ngSubmit)="onsubmit()">
       <mat-form-field class="form-full-width">
@@ -15,7 +22,7 @@ import { Router } from '@angular/router';
         <input
           matInput
           placeholder="Product name "
-          formControlName="name"
+          formControlName="product_name"
         />
       </mat-form-field>
       <mat-form-field class="form-full-width">
@@ -31,7 +38,7 @@ import { Router } from '@angular/router';
       <input
         matInput
         placeholder="description "
-        formControlName="description"    
+        formControlName="product_description"    
       />
     </mat-form-field>
       <mat-form-field class="form-full-width">
@@ -44,9 +51,7 @@ import { Router } from '@angular/router';
       </mat-form-field>
 
       <div class="form-group">
-        <label class="card-title" for="file">
-          Please select prduct Image
-        </label>
+      
         <input
           formControlName="file"
           id="file"
@@ -67,24 +72,25 @@ export class AddproductComponent implements OnDestroy {
 
   public obs$;
   myForm = new FormGroup({
-          name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    product_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
          file: new FormControl('', [Validators.required]),
          price: new FormControl('', [Validators.required]),
          quantity: new FormControl('', [Validators.required]),
-         description: new FormControl('', [Validators.required]),
+         product_description: new FormControl('', [Validators.required]),
          fileSource: new FormControl('', [Validators.required]),
   });
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) {}
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      console.log("simon image file name",file)
       this.myForm.patchValue({
-        fileSource: file,
+        fileSource: file
       });
     }
   }
@@ -92,11 +98,35 @@ export class AddproductComponent implements OnDestroy {
   onsubmit() {
     const formData = new FormData();
     formData.append('file', this.myForm.get('fileSource').value);
-    formData.append('name', this.myForm.get('name').value);
+    formData.append('name', this.myForm.get('product_name').value);
     formData.append('price', this.myForm.get('price').value);
     formData.append('quantity', this.myForm.get('quantity').value);
-    formData.append('description', this.myForm.get('description').value);
+    formData.append('description', this.myForm.get('product_description').value);
           // we will post the data to backend 
+          const helper = new JwtHelperService();
+          //const token = JSON.parse(localStorage.getItem('token'));
+          const user = helper.decodeToken(localStorage.getItem('token'))
+         // var myJSON = JSON.stringify(user);
+         // console.log(myJSON);
+         // console.log(formData.forEach(x=>console.log(x)))
+
+         // console.log
+          //const user = helper.decodeToken(token)
+
+              //  console.log(user, token, formData);
+          // const expirationDate = helper.getTokenExpirationDate(myRawToken);
+          // const isExpired = helper.isTokenExpired(myRawToken);
+          //decodeToken using angular2-auth and get the entire user json
+          console.log("simon",this.myForm.value)
+          this.obs$ = this.http
+            .post(`http://localhost:3000/farmer/${user.id}/add`,formData)
+            .subscribe((res) => {
+              console.log(res);
+              alert('Product Uploaded Successfully !!');
+              this.router.navigateByUrl('/farmers/productlist');
+            });
+            
+    
   }
   ngOnDestroy() {
     if (this.obs$) {

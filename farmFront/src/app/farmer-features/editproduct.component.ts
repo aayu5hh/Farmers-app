@@ -1,16 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormGroup, FormBuilder, Validators}  from '@angular/forms'
 import { Router } from '@angular/router';
-import{FarmersServicesService} from'../farmers-services.service'
+import{FarmersServicesService} from'../farmers-services.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+
 @Component({
   selector: 'app-editproduct',
   template: `
-
-  <div class="card text-center">
+  <p  class="parent text-center">
+  Please Fill out to edit 
+</p>
+  <div class="child text-center">
   <mat-divider></mat-divider><br /><br />
-  <p class="card-title">
-    Please Fill out to edit 
-  </p>
+  
   <mat-divider></mat-divider>
   <div>
     <form [formGroup]="myForm"   (ngSubmit)="onsubmit()" >
@@ -19,7 +22,7 @@ import{FarmersServicesService} from'../farmers-services.service'
     <input
       matInput
       placeholder="Product name "
-      formControlName="name"
+      formControlName="product_name"
     />
   </mat-form-field>
   <mat-form-field class="form-full-width">
@@ -35,7 +38,7 @@ import{FarmersServicesService} from'../farmers-services.service'
   <input
     matInput
     placeholder="description "
-    formControlName="description"    
+    formControlName="product_description"    
   />
 </mat-form-field>
   <mat-form-field class="form-full-width">
@@ -47,8 +50,8 @@ import{FarmersServicesService} from'../farmers-services.service'
     />
   </mat-form-field><br>
       
-      <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/><br>
-      <button mat-raised-button color='primary' type="submit" [disabled]="!myForm.valid"> Submit Change </button>
+      <img height="100" width="100" src="{{product.product_image}}"  alt="Photo of Product"/><br>
+      <button mat-raised-button color='primary' type="submit" [disabled]="myForm.valid"> Submit Change </button>
     </form>
   </div>
 </div>
@@ -66,11 +69,13 @@ public myForm: FormGroup;
                        console.log(this.product);
 
                 this.myForm = this.formBuilder.group({
-                         name: [this.product.name, Validators.required],
+                         product_name: [this.product.product_name, Validators.required],
                          quantity: [this.product.quantity, Validators.required],
                          price: [this.product.price, Validators.required],
-                         description: [this.product.description, Validators.required]
-                         });  
+                         product_description: [this.product.product_description, Validators.required],
+                         picture: [this.product.picture, Validators.required]});
+
+                           
 }
 
 
@@ -78,10 +83,16 @@ public myForm: FormGroup;
   onsubmit(){
     
     //  we will post the new edited data to back end ( this.form.vlaue )
-    // console.log(this.myForm.value)
      // navigate back to product list 
-    //this.subscrib$ =  this.farmersservice.editFarmersProduct("farmer_id", "product_id",this.myForm.value).subscribe( data=>{}
-  }
+     const helper = new JwtHelperService();
+    const user = helper.decodeToken(localStorage.getItem('token'))
+    console.log(user.id, this.product._id,this.myForm.value)
+     this.subscrib$ =  this.farmersservice.updateFarmerProduct(user.id, this.product._id, this.myForm.value).subscribe( data=>{
+                 console.log("successfully edited",data);
+                 this.router.navigateByUrl('farmers/productlist')
+  })
+
+}
 
   ngOnDestroy() {
     //destroy /unsubscribe
