@@ -30,7 +30,7 @@ export class BackendRequestService {
   getFarmerProductsById(id) {
     return this.http.get(this.baseUrl + `customer/${id}`);
   }
-  isEmailUnique(email){
-    return this.http.get(this.baseUrl+`user/${email}`);
-  }
+  // isEmailUnique(email){
+  //   return this.http.get(this.baseUrl+`user/${email}`);
+  // }
 }
