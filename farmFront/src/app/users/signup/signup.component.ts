@@ -50,13 +50,7 @@ export class SignupComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
-
-    // emails=this.reqService.getAllEmails()
-      // .subscribe(data=>this.emails=data); // fetch from api
-    
-    // const email={"email":"this.signupForm.get('email').value"};
-    // console.info({"email":this.signupForm.get('email').value});
+    console.log(this.signupForm.value);   
     this.reqService.signUp(this.signupForm.value).subscribe(
       (resp) => {
         console.log(resp);
@@ -81,17 +75,19 @@ export class SignupComponent implements OnInit{
   }
   
 
+  //need to modify
+
   // uniqueEmailValidator(control:FormControl):{[s:string]:boolean}{
   //   const email=control.get('email').value;
-  //   if(control.get('email').valid){
-  //     // const isUnique=this.reqService.emails.(farmer=>farmer.email).some(value=>value===email);
-  //     if(isUnique){
+  //  const unique=this.reqService.isEmailUnique(email);
+  //   if(!unique){   
+     
   //       return {email:true};
   //     }
   //     return null;
   //   }
    
-  // }
+
 
 
 
