@@ -23,7 +23,7 @@ import { FarmerRouteGuard } from './guard/FarmerRoute.guard';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // BrowserAnimationsModule,MatCheckboxModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatRippleModule,
+    BrowserAnimationsModule,//MatCheckboxModule,MatButtonModule,MatFormFieldModule,MatInputModule,MatRippleModule,
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
       {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),

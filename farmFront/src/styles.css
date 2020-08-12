@@ -2,22 +2,35 @@
 
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
 
-/* html, body { height: 100%; }
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.card {
 
+
+
+.form-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-full-width {
+  width: 100%;
+}
+
+
+.child {
     width: 40rem;
     margin: 0 auto;
-  }
+  } */
 
-  .card-title {
+ .parent {
       font-size: 1rem;
       font-weight: bolder;
       font-style: italic;
       color:rgba(5, 105, 5, 0.815);
       height: 45;
-      width: 45;
-  }
+      
+}
 
 
 
@@ -31,6 +44,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .mat-sort-header-container {
     align-items : center,
-  } */
+  } 
 
 
