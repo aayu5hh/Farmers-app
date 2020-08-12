@@ -51,7 +51,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   </mat-form-field><br>
       
       <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/><br>
-      <button mat-raised-button color='primary' type="submit" [disabled]="!myForm.valid"> Submit Change </button>
+      <button mat-raised-button color='primary' type="submit" [disabled]="myForm.valid"> Submit Change </button>
     </form>
   </div>
 </div>
@@ -69,11 +69,13 @@ public myForm: FormGroup;
                        console.log(this.product);
 
                 this.myForm = this.formBuilder.group({
-                         name: [this.product.product_name, Validators.required],
+                         product_name: [this.product.product_name, Validators.required],
                          quantity: [this.product.quantity, Validators.required],
                          price: [this.product.price, Validators.required],
-                         description: [this.product.product_description, Validators.required]
-                         });  
+                         product_description: [this.product.product_description, Validators.required],
+                         picture: [this.product.picture, Validators.required]});
+
+                           
 }
 
 
@@ -83,11 +85,11 @@ public myForm: FormGroup;
     //  we will post the new edited data to back end ( this.form.vlaue )
      // navigate back to product list 
      const helper = new JwtHelperService();
-     const token = JSON.parse(localStorage.getItem('token'));
-     const user = helper.decodeToken(token)
-     console.log(user, token, this.myForm.value);
-     this.subscrib$ =  this.farmersservice.updateFarmerProduct(user._id, this.product._id, this.myForm.value).subscribe( data=>{
-                 console.log(data);
+    const user = helper.decodeToken(localStorage.getItem('token'))
+    console.log(user.id, this.product._id,this.myForm.value)
+     this.subscrib$ =  this.farmersservice.updateFarmerProduct(user.id, this.product._id, this.myForm.value).subscribe( data=>{
+                 console.log("successfully edited",data);
+                 this.router.navigateByUrl('farmers/productlist')
   })
 
 }

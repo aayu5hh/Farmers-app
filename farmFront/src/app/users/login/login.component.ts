@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         //decodeToken
         //check the role from the decoded token
         //if role is customer
-        this.r.navigate(['customers']);
+        this.r.navigate(['farmers/productlist']);
         //if role is farmer, navigate to farmer
       },
       (err) => console.log(err.error) )

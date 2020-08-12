@@ -1,5 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import{FarmersServicesService} from'../farmers-services.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
+
+
 
 @Component({
   selector: 'app-listoforders',
@@ -35,7 +39,8 @@ export class ListofordersComponent implements OnInit {
 
   public user;
   public orders;
-  constructor( private router: Router) {}
+  public obs$;
+  constructor( private router: Router, private farmerService:FarmersServicesService) {}
 
 
 
@@ -52,7 +57,14 @@ onOrderCompleted(id){
   ngOnInit(): void {
   
     // // dammy data 
-     this.orders  = [{ total_price: 200, pickup_date : '08/12/2020', status: 'Pending', farmer : {_id :10}, customer :{_id : 12}}]
+    const helper = new JwtHelperService();
+    const user = helper.decodeToken(localStorage.getItem('token'))
+    console.log(user.id)
+    this.obs$=this.farmerService.getFarmerOrders(user.id).subscribe(data=>{
+      this.orders=data;
+      console.log(data)
+    })
+     //this.orders  = [{ total_price: 200, pickup_date : '08/12/2020', status: 'Pending', farmer : {_id :10}, customer :{_id : 12}}]
      
   }
 

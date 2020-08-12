@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-addproduct',
@@ -81,14 +82,15 @@ export class AddproductComponent implements OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) {}
 
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      console.log("simon image file name",file)
       this.myForm.patchValue({
-        fileSource: file,
+        fileSource: file
       });
     }
   }
@@ -102,20 +104,28 @@ export class AddproductComponent implements OnDestroy {
     formData.append('description', this.myForm.get('product_description').value);
           // we will post the data to backend 
           const helper = new JwtHelperService();
+          //const token = JSON.parse(localStorage.getItem('token'));
+          const user = helper.decodeToken(localStorage.getItem('token'))
+         // var myJSON = JSON.stringify(user);
+         // console.log(myJSON);
+         // console.log(formData.forEach(x=>console.log(x)))
 
-          const token = JSON.parse(localStorage.getItem('token'));
-          const user = helper.decodeToken(token)
-                console.log(user, token, formData);
+         // console.log
+          //const user = helper.decodeToken(token)
+
+              //  console.log(user, token, formData);
           // const expirationDate = helper.getTokenExpirationDate(myRawToken);
           // const isExpired = helper.isTokenExpired(myRawToken);
           //decodeToken using angular2-auth and get the entire user json
+          console.log("simon",this.myForm.value)
           this.obs$ = this.http
-            .post(`http://localhost:3000/farmer/${user._id}/add`, formData)
+            .post(`http://localhost:3000/farmer/${user.id}/add`,formData)
             .subscribe((res) => {
               console.log(res);
               alert('Product Uploaded Successfully !!');
               this.router.navigateByUrl('/farmers/productlist');
             });
+            
     
   }
   ngOnDestroy() {

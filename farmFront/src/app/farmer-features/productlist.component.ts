@@ -13,11 +13,11 @@ import { JwtHelperService } from "@auth0/angular-jwt";
       <mat-chip-list aria-label="Fish selection">
       <img height="100" width="100" src="{{product.picture}}"  alt="Photo of Product"/>
         <mat-chip> Product: {{ product.product_name }}</mat-chip>
-        <mat-chip> Price $ {{product.price }}</mat-chip>
-        <mat-chip> Amount In Stock {{ product.quantity}}</mat-chip>
-        <mat-chip> Amount In Stock {{ product.product_description}}</mat-chip>
+        <mat-chip> Price $: {{product.price }}</mat-chip>
+        <mat-chip> Amount In Stock: {{ product.quantity}}</mat-chip>
+        <mat-chip> Product Description: {{ product.product_description}}</mat-chip>
         <button mat-button color='primary'> <a [routerLink]="['product',product._id]" [state]="{product:product}">Edit Product</a> </button>
-        <button mat-button color="warn" (click)=deleteProduct(user._id,product._id)><u>Delete Product</u></button>
+        <button mat-button color="warn" (click)=deleteProduct(product._id)><u>Delete Product</u></button>
         </mat-chip-list>
         <mat-divider></mat-divider><br>
         <mat-divider></mat-divider><br>
@@ -39,15 +39,18 @@ export class ProductlistComponent implements OnInit {
   public products;
   public loading: boolean = true;
   public obs$;
-  public user;
 
   constructor(private router: Router, private farmerService: FarmersServicesService) { }
 
 
-  deleteProduct(farmer_id,product_id) {
+  deleteProduct(product_id) {
     //  we will pass data to backend throuth services 
-    this.obs$ = this.farmerService.deleteFarmerProduct(farmer_id,product_id).subscribe(data => {
+    const helper = new JwtHelperService();
+    const user = helper.decodeToken(localStorage.getItem('token'))
+    console.log(user.id, product_id)
+    this.obs$ = this.farmerService.deleteFarmerProduct(user.id, product_id).subscribe(data => {
       console.log(data);
+      this.ngOnInit();
     })
   }
 
@@ -55,14 +58,16 @@ export class ProductlistComponent implements OnInit {
     //  we will get data from backend throuth services
     this.loading = false
     // dammy data 
-    this.products  = [{ _id: 1001 , product_name : 'Tomato', price: 20, quantity:200, product_description : 'This is dammy ', picture :'' }]
+    //this.products  = [{ _id: 1001 , product_name : 'Tomato', price: 20, quantity:200, product_description : 'This is dammy ', picture :'' }]
     const helper = new JwtHelperService();
-    const token = JSON.parse(localStorage.getItem('token'));
-    const user = helper.decodeToken(token)
-    console.log(user, token);
-    this.obs$ = this.farmerService.getFarmerProducts(user._id).subscribe(data => {
-      console.log(data);
-    })
+    const user = helper.decodeToken(localStorage.getItem('token'))
+    console.log(user.id)
+    this.obs$ = this.farmerService.getFarmerProducts(user.id).subscribe((data) => {
+      this.products = data[0].product;
+      console.log("succesfully got data", data);
+    },(error)=>{console.log("error simon", error)}
+    
+    )
   }
 
 

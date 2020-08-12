@@ -26,4 +26,5 @@ export class BackendRequestService {
   getAllFarmersData(): Observable<any> {
     return this.http.get(this.baseUrl + 'farmer');
   }
+  
 }

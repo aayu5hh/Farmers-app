@@ -2,8 +2,17 @@ require('dotenv').config();
 
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
+
+const uploadImage = require('../imageUpload/imageUplodHelper');
+/** 
+ * multer product farmer product image
+ **/
+const multerUpload = multer({
+storage: multer.memoryStorage()})
 
 const User = require('../model/user');
+const order = require('../model/order');
 
 //To fetch all users whose role is farmer
 // localhost:3000/farmer/
@@ -20,6 +29,7 @@ router.get('/farmer', (req, res) => {
 //To get farmer with farmerid
 //localhost:3000/:farmerid/ 
 router.get('/farmer/:farmerid', (req, res) => {
+    console.log("get farmer product")
     User.find({'_id': req.params.farmerid}, (err, doc) => {
         if (!err) {
             res.send(doc);
@@ -42,48 +52,94 @@ router.get('/farmer/:farmerid/:productid', (req, res) => {
 });
 
 // localhost:3000/farmer/_farmerid/add
-router.post('/farmer/:farmerid/add', (req, res) => {
-
+router.post('/farmer/:farmerid/add', multerUpload.single('file'), (req, res) => {
+    //console.log(req.body.price)
     const farmer_id = req.params.farmerid;
-    const { product_name, product_description, price, quantity, product_image } = req.body.product[0]
-    console.log(req.body)
+    const { product_name, product_description, price, quantity, product_image } = req.body  //
+    console.log(req.body,farmer_id)
+
+    // try {
+
+        // const ProductData = {
+        //     product_name,
+        //     product_description,
+        //     price,
+        //     quantity,
+        //     product_image
+        // }
+
+        // User.update({ '_id': farmer_id },
+        //     { '$push': { 'product': ProductData } },
+        //     (err, doc) => {
+        //         if (!err) {
+        //             res.send(doc);
+        //              console.log(doc)
+        //         } else {
+        //             console.log('Error in Farmer Product addition: ' + JSON.stringify(err, undefined, 2));
+        //             next(err);
+        //         }
+
+    //         })
+    // } catch (e) {
+    //     console.log({ message: e });
+    //     res.json({ message: e });
+    // }
 
     try {
-
-        const ProductData = {
-            product_name,
-            product_description,
-            price,
-            quantity,
-            product_image
-        }
-
-        User.update({ '_id': farmer_id },
-            { '$push': { 'product': ProductData } },
-            (err, doc) => {
-                if (!err) {
-                    res.send(doc);
-                } else {
-                    console.log('Error in Farmer Product addition: ' + JSON.stringify(err, undefined, 2));
-                    next(err);
-                }
-
-            })
-    } catch (e) {
-        console.log({ message: e });
-        res.json({ message: e });
+        const myFile = req.file;
+        //console.log(myFile, req.body)
+        const price = req.body.price;
+        const product_name = req.body.product_name;
+        const quantity = req.body.quantity;
+        const product_description =req.body.product_description;
+    
+        uploadImage(myFile).then((imageUrl) => {
+          if (imageUrl) {
+              console.log(imageUrl, 'url') //#######*****///
+            const ProductData = {
+                product_name,
+                product_description,
+                price,
+                quantity,
+                product_image : imageUrl
+            }
+    
+            User.update({ '_id': farmer_id },
+                { '$push': { 'product': ProductData } },
+                (err, doc) => {
+                    if (!err) {
+                        res.send(doc);
+                         console.log(doc)
+                    } else {
+                        console.log('Error in Farmer Product addition: ' + JSON.stringify(err, undefined, 2));
+                        next(err);
+                           }
+                        })
+                    }
+        })
     }
+            
+          
+         
+           
+                
+      catch (err) {
+        res.status(404).send({ msg: err });
+      }
+
+
 });
 
 // localhost:3000/farmer/_id
 router.patch('/farmer/:farmerid/:productid', (req  ,res) => {
+    console.log(req.body)
     const farmer_id = req.params.farmerid
     const product_id = req.params.productid;
-    const name = req.body.product[0].product_name;
-    const description = req.body.product[0].product_description;
-    const price = req.body.product[0].price;
-    const quantity = req.body.product[0].quantity;
-    const image = req.body.product[0].product_image;
+    const name = req.body.product_name;
+    const description = req.body.product_description;
+    const price = req.body.price;
+    const quantity = req.body.quantity;
+    const image = req.body.product_image;
     console.log(req.body);
 
     try {
@@ -126,4 +182,23 @@ router.delete('/farmer/:farmerid/:productid', (req, res) => {
 
 });
 
+
+
+
+// get an order of a farmer by his id  added by simon
+router.get('/orders/farmer/:farmer_id', (req, res) => {
+    // console.log(req.params.farmer_id)
+    
+    const farmer_id = (req.params.farmer_id).toString();
+      
+    order.find({'farmer.id':farmer_id}, (err, docs) => {
+        console.log(docs)
+        if (!err) {
+           
+            res.send(docs);
+        } else {
+            console.log('Error in Retriving all Orders: ' + JSON.stringify(err, undefined, 2));
+        }
+    });
+});
 module.exports = router;
