@@ -82,21 +82,19 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Sign up</button>  <br/><br/>
+    <button type="submit" class="btn btn-primary"[disabled]=!signupForm.valid>Sign up</button>  <br/><br/>
     <div class="row"  *ngIf="respMsg">
       <div class="col-xs-12">
         <p class="alert alert-success">
-            <strong>{{respMsg}}</strong> Please click here to login!.
-            <button class="btn btn-info" (click)='goToLogin()'>Goto login</button>
-  
+            <strong>Registration success!!</strong> Please click here to login!.
+            <button class="btn btn-info" (click)='goToLogin()'>Goto login</button>  
         </p>
       </div>
     </div> 
     <div class="row"  *ngIf="errMsg">
       <div class="col-xs-12">
-        <p class="alert alert-success">
-            <strong>Registration failed!</strong> Please try again!.
-            
+        <p class="alert alert-danger">
+            <strong>Registration failed!</strong> Please try again!.           
   
         </p>
       </div>

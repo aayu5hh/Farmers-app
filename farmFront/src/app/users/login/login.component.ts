@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log('inside login screen');
   }
+  errorMsg;
 
   onSubmit() {
     console.log(this.loginForm.value);
@@ -38,9 +39,24 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token',resp['token']);
 
         this.r.navigate(['customers']);
+        
       },
-      (err) => console.log(err.error) )
+      (err) => this.errorMsg=err.error )
   }
+
+
+  // (resp) => {
+  //   console.log(resp);
+  //   if(resp.message.errors) {
+  //     this.errMsg= resp.message._message;
+  //     this.respMsg= undefined;
+  //   } else {
+
+  //     this.respMsg= resp['message'];
+  //     this.errMsg = undefined;
+
+  //   }
+  // }
 
   goToSignUp(){
     this.r.navigate(['signup']);
