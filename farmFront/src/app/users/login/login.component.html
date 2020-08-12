@@ -41,7 +41,15 @@
                         <p style="font-size: 12px; color: #FF1C19;">Email or Password invalid, please verify</p>
                     </div> -->
                     <!-- <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit" Button label="signin" (click)="signup=false;signin=true">Login</button> -->
-                    <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
+                    <button class="btn btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button><br/>
+                    <div class="row"  *ngIf="errorMsg">
+                        <div class="col-xs-12">
+                          <p class="alert alert-danger">
+                              <strong>Invalid email / password</strong> Please try again!.                             
+                    
+                          </p>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

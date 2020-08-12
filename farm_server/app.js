@@ -13,13 +13,6 @@ var usersRouter = require('./routes/users');
 var farmersRouter = require('./routes/farmers');
 var customerRouter = require('./routes/customer');
 
-mongoose.connect('mongodb+srv://user:123@mwaprojectcluster.16aa0.mongodb.net/FarmersDb?retryWrites=true&w=majority', (err)=>{
-  if(!err)
-    console.log('MongoDb connection succeeded...');
-  else
-  console.log('Error in DB connection: '+JSON.stringify(err, undefined, 2));
-});
-
 var app = express();
 
 
