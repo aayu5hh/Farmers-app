@@ -28,6 +28,6 @@ export class BackendRequestService {
   }
 
   getFarmerProductsById(id) {
-    return this.http.get(this.baseUrl + '');
+    return this.http.get(this.baseUrl + `customer/${id}`);
   }
 }

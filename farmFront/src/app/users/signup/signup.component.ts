@@ -47,8 +47,8 @@ export class SignupComponent implements OnInit{
     this.reqService.signUp(this.signupForm.value).subscribe(
       (resp) => {
         console.log(resp);
-        if(resp.message.errors) {
-          this.errMsg= resp.message._message;
+        if(resp['message']['errors']) {
+          this.errMsg= resp['message']['_message'];
           this.respMsg= undefined;
         } else {
     
