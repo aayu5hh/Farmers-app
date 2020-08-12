@@ -34,7 +34,7 @@
 
       <div class="form-group col-md-6">
         <label for="inputFirstname">FirstName</label>
-        <input type="text" class="form-control" id="inputFirstname" formControlName="first_name"
+        <input type="text" class="form-control" spellcheck="false" id="inputFirstname" formControlName="first_name"
           placeholder="FirstName">
 
         <div class="text-danger"
@@ -46,7 +46,7 @@
 
       <div class="form-group col-md-6">
         <label for="inputLastname">LastName</label>
-        <input type="text" class="form-control" id="inputLastname" formControlName="last_name"
+        <input type="text" class="form-control" spellcheck="false" id="inputLastname" formControlName="last_name"
           placeholder="FirstName">
 
         <div class="text-danger"
@@ -55,7 +55,7 @@
         </div>
       </div>
       
-      
+     
     </div>
     <div class="form-group">
       <label for="inputAddress">Address</label>
@@ -75,11 +75,11 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary"[disabled]=!signupForm.valid>Sign up</button>  <br/><br/>
+    <button type="submit" class="btn btn-primary"[disabled]="!signupForm.valid">Sign up</button>  <br/><br/>
     <div class="row"  *ngIf="respMsg">
       <div class="col-xs-12">
         <p class="alert alert-success">
-            <strong>Registration success!!</strong> Please click here to login!.
+            <strong>Registration success!!!</strong> Please click here to login!!
             <button class="btn btn-info" (click)='goToLogin()'>Goto login</button>  
         </p>
       </div>
@@ -87,7 +87,8 @@
     <div class="row"  *ngIf="errMsg">
       <div class="col-xs-12">
         <p class="alert alert-danger">
-            <strong>Registration failed!</strong> Please try again!.           
+            <strong>Registration failed!</strong> Please try again!.
+            
   
         </p>
       </div>
@@ -97,5 +98,4 @@
   </div>
  
 </form>
-
 

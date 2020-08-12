@@ -43,21 +43,6 @@ export class LoginComponent implements OnInit {
       },
       (err) => this.errorMsg=err.error )
   }
-
-
-  // (resp) => {
-  //   console.log(resp);
-  //   if(resp.message.errors) {
-  //     this.errMsg= resp.message._message;
-  //     this.respMsg= undefined;
-  //   } else {
-
-  //     this.respMsg= resp['message'];
-  //     this.errMsg = undefined;
-
-  //   }
-  // }
-
   goToSignUp(){
     this.r.navigate(['signup']);
   }
