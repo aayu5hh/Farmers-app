@@ -11,16 +11,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
+  farmer_id;
   farmerProducts;
 
-  constructor(private backendService: BackendRequestService, private r: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private backendService: BackendRequestService, private r: Router, private activatedRoute: ActivatedRoute) {
+    activatedRoute.params.subscribe(
+      (param: any) => {this.farmer_id = param['farmer_id']; console.log(this.farmer_id)}
+    )
+  }
 
   ngOnInit(): void {
-    this.backendService.getAllFarmersData().subscribe(
+    this.backendService.getFarmerProductsById(this.farmer_id).subscribe(
       (data) => {
-        console.log('getting all farmers data..');
-        console.log(data);
-        // this.allFarmers = data;
+        this.farmerProducts = data[0];
+        console.log(this.farmerProducts);
       },
       (err) => console.log(err)
     )
