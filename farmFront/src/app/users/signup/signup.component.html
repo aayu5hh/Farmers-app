@@ -82,7 +82,7 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Sign up</button>  <br/><br/>
+    <button type="submit" class="btn btn-primary"[disabled]=!signupForm.valid>Sign up</button>  <br/><br/>
     <div class="row"  *ngIf="respMsg">
       <div class="col-xs-12">
         <p class="alert alert-success">
