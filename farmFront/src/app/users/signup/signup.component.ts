@@ -24,8 +24,7 @@ export class SignupComponent implements OnInit{
 
   // public emails=[];
 
-  roles = ['Customer', 'Farmer'];
-  
+  roles = ['customer', 'farmer'];
   
 
   constructor(private r: Router, private formBuilder: FormBuilder, private reqService: BackendRequestService) {
@@ -35,12 +34,11 @@ export class SignupComponent implements OnInit{
       'first_name': ["", [Validators.required]],
       'last_name': ["",[Validators.required]],
       'email': ["",Validators.compose([Validators.required, Validators.email,
-        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"),
-        // this.uniqueEmailValidator
+        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
       ]) ],
       'password': ["", [Validators.required]],
       'address':["",[Validators.required]],
-      'role': ['Customer']
+      'role': ['customer']
 
     });
    }
@@ -81,7 +79,7 @@ export class SignupComponent implements OnInit{
   //   const email=control.get('email').value;
   //  const unique=this.reqService.isEmailUnique(email);
   //   if(!unique){   
-     
+      
   //       return {email:true};
   //     }
   //     return null;
