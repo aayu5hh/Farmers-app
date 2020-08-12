@@ -7,16 +7,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import{ RequestInterceptor } from'./request.interceptor';
-import { RouteGuard } from './route.guard';
+import { CustomerRouteGuard } from './guard/customerRoute.guard';
+import { FarmerRouteGuard } from './guard/FarmerRoute.guard';
 
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent
+    AppComponent
 
   ],
   imports: [
@@ -27,8 +27,9 @@ import { RouteGuard } from './route.guard';
     RouterModule.forRoot([
       { path: "", loadChildren: () => import("./users/users.module").then(m => m.UsersModule) },
       {path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
-      canActivate: [RouteGuard]},
-      {path :'farmers', loadChildren: ()=>import('./farmer-features/farmer-features.module').then(m=>m.FarmerFeaturesModule)},
+      canActivate: [CustomerRouteGuard]},
+      {path :'farmers', loadChildren: ()=>import('./farmer-features/farmer-features.module').then(m=>m.FarmerFeaturesModule),
+      canActivate: [FarmerRouteGuard]},
 
       // { path: "", redirectTo: "login", pathMatch: "full" }
       // { path: "", component: HomeComponent}
