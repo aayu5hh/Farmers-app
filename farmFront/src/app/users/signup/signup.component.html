@@ -55,14 +55,7 @@
         </div>
       </div>
       
-      <!-- <div class="form-group col-md-6">
-        <label for="inputLastname">LastName</label>
-        <input type="text" class="form-control" id="inputLastname" formControlName="last_name" placeholder="LastName">
-        <div class="text-danger"
-          *ngIf="signupForm.get('last_name').hasError('required')&&(signupForm.get('last_name').dirty || signupForm.get('last_name').touched)">
-          LastName should not be empty!!
-        </div>
-      </div> -->
+      
     </div>
     <div class="form-group">
       <label for="inputAddress">Address</label>
@@ -105,34 +98,4 @@
  
 </form>
 
-<!-- <footer>
-    <div class="border">
-        <span class="title">Project of Modern Web Architecture</span>
-        <span class="date">&copy; August 2020</span>
-    </div>
-    <div id="notify" style="display: none;">Alert</div>
-</footer> -->
 
-
-
-
-
-
-
-<!-- <form [formGroup]="signupForm" (ngSubmit)='onSubmit()'>
-    <p><label>first name: </label>  <input type="text" formControlName="first_name"></p>
-    
-    <p><label>last name: </label>  <input type="text" formControlName="last_name"></p>
-    
-    <p><label>email: </label>  <input type="text" formControlName="email"></p>
-
-    <p><label>password: </label>  <input type="password" formControlName="password"></p>
-
-    <div *ngFor="let r of roles">
-        <label>
-          <input type="radio" formControlName="role" [value]="r"> {{r}}
-        </label>
-      </div>
-    
-    <p><button type="submit">SignUp</button>  <button (click) = 'goToLogin()'>Login</button></p>
-</form> -->
