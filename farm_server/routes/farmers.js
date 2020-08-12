@@ -5,6 +5,7 @@ var router = express.Router();
 
 const User = require('../model/user');
 const Order = require('../model/order');
+var nodemailer = require('nodemailer');
 
 //To fetch all users whose role is farmer
 // localhost:3000/farmer/
@@ -150,7 +151,7 @@ router.get('/orders/:farmerid', (req, res) => {
 router.patch('/orders/:orderid/:status', (req, res) => {
     const order_id = req.params.orderid;
     const status = req.params.status;
-    console.log(status);
+    // console.log(status);
 
     try {
         Order.findOneAndUpdate({ '_id':order_id },
