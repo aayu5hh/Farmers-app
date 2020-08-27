@@ -30,7 +30,7 @@ export class FarmersServicesService {
 
   }
 
-  setEmailReciver(){
+  setEmailReciver(email){
 
   }
 
